@@ -1,10 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
-  trailingSlash: true,
   images: {
     domains: ['storage.googleapis.com', 'supabase.co'],
-    unoptimized: true,
   },
   async headers() {
     return [

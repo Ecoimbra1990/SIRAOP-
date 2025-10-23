@@ -1,12 +1,15 @@
 'use client';
 
 import { useState } from 'react';
+
+// Desabilitar prerendering para esta página
+export const dynamic = 'force-dynamic';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { ocorrenciasApi } from '@/lib/api';
-import MapPicker from '@/components/MapPicker';
+import SimpleMapPicker from '@/components/SimpleMapPicker';
 import { ArrowLeft, Save, MapPin } from 'lucide-react';
 
 const ocorrenciaSchema = z.object({
@@ -256,7 +259,7 @@ export default function NovaOcorrenciaPage() {
             </p>
           </div>
           <div className="card-content">
-            <MapPicker
+            <SimpleMapPicker
               latitude={latitude}
               longitude={longitude}
               onLocationSelect={handleLocationSelect}
