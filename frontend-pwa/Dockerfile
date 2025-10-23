@@ -35,7 +35,7 @@ RUN adduser -S nextjs -u 1001
 RUN chown -R nextjs:nodejs /usr/src/app
 USER nextjs
 
-# Expor a porta 8080 (padrão Cloud Run)
+# Expor a porta 8080 (padrão Firebase)
 EXPOSE 8080
 
 # Configurar variáveis de ambiente para produção

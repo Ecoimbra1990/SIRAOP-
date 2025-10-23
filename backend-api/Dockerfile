@@ -48,7 +48,7 @@ RUN adduser -S nestjs -u 1001
 RUN chown -R nestjs:nodejs /usr/src/app
 USER nestjs
 
-# Expor a porta 8080 (padrão Cloud Run)
+# Expor a porta 8080 (padrão Fly.io)
 EXPOSE 8080
 
 # Comando para iniciar a aplicação

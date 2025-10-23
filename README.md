@@ -1,12 +1,12 @@
 # SIRAOP - Sistema de Registro e Análise de Ocorrências Policiais
 
-Sistema mobile-first para registro e análise de ocorrências policiais, desenvolvido para ser implantado no Google Cloud Run.
+Sistema mobile-first para registro e análise de ocorrências policiais, desenvolvido com arquitetura moderna e escalável.
 
 ## 🚀 Características
 
 - **Mobile-First**: Interface responsiva otimizada para smartphones
 - **Seguro**: Autenticação JWT e dados sensíveis criptografados
-- **Cloud-Ready**: Pronto para implantação no Google Cloud Run
+- **Cloud-Ready**: Pronto para implantação em múltiplas plataformas
 - **Geolocalização**: Integração com PostGIS para consultas espaciais
 - **PWA**: Progressive Web App com funcionalidades offline
 - **Relatórios**: Geração automática de PDFs com Puppeteer
@@ -15,12 +15,12 @@ Sistema mobile-first para registro e análise de ocorrências policiais, desenvo
 
 ### Backend (NestJS)
 - **Framework**: NestJS com TypeScript
-- **Banco de Dados**: PostgreSQL + PostGIS
+- **Banco de Dados**: Supabase (PostgreSQL + PostGIS)
 - **ORM**: TypeORM
 - **Autenticação**: JWT
-- **Upload**: Google Cloud Storage
+- **Upload**: Supabase Storage
 - **PDF**: Puppeteer
-- **Containerização**: Docker
+- **Deploy**: Fly.io
 
 ### Frontend (Next.js 14)
 - **Framework**: Next.js 14 com App Router
@@ -29,6 +29,7 @@ Sistema mobile-first para registro e análise de ocorrências policiais, desenvo
 - **Mapas**: React-Leaflet
 - **Formulários**: React Hook Form + Zod
 - **HTTP**: Axios
+- **Deploy**: Firebase Hosting
 
 ## 📁 Estrutura do Projeto
 
@@ -43,10 +44,11 @@ siraop-project/
 │   │   ├── veiculos/     # Veículos
 │   │   ├── armas/        # Armas
 │   │   ├── faccoes/      # Facções
-│   │   ├── storage/      # Google Cloud Storage
+│   │   ├── storage/      # Supabase Storage
 │   │   ├── relatorios/   # Geração de PDF
 │   │   └── gis/          # Utilitários PostGIS
-│   └── Dockerfile        # Container para Cloud Run
+│   ├── Dockerfile        # Container para Fly.io
+│   └── fly.toml          # Configuração Fly.io
 │
 ├── frontend-pwa/         # PWA Next.js
 │   ├── app/
@@ -57,7 +59,9 @@ siraop-project/
 │   │       └── pessoas/       # CRUD de pessoas
 │   ├── components/       # Componentes React
 │   ├── lib/             # Configurações e utilitários
-│   └── store/           # Gerenciamento de estado
+│   ├── store/           # Gerenciamento de estado
+│   ├── firebase.json    # Configuração Firebase
+│   └── .firebaserc      # Projeto Firebase
 │
 └── README.md
 ```
@@ -66,9 +70,10 @@ siraop-project/
 
 ### Pré-requisitos
 - Node.js 18+
-- PostgreSQL com PostGIS
+- Supabase (banco de dados)
 - Docker (para desenvolvimento local)
-- Conta Google Cloud (para produção)
+- Conta Firebase (para frontend)
+- Conta Fly.io (para backend)
 
 ### 1. Clone o repositório
 ```bash
@@ -109,15 +114,17 @@ cp env.example .env.local
 npm run dev
 ```
 
-### 4. Banco de Dados
+### 4. Configurar Supabase
 
-```sql
--- Criar banco de dados
-CREATE DATABASE siraop_db;
+```bash
+# Instalar Supabase CLI
+npm install -g supabase
 
--- Instalar extensão PostGIS
-\c siraop_db;
-CREATE EXTENSION IF NOT EXISTS postgis;
+# Inicializar projeto Supabase
+supabase init
+
+# Configurar variáveis de ambiente
+# Adicione as credenciais do Supabase no .env
 ```
 
 ## 🐳 Docker
@@ -135,15 +142,32 @@ docker build -t siraop-frontend .
 docker run -p 3000:3000 siraop-frontend
 ```
 
-### Produção (Google Cloud Run)
-```bash
-# Build e push da imagem
-gcloud builds submit --tag gcr.io/PROJECT_ID/siraop-api backend-api/
-gcloud builds submit --tag gcr.io/PROJECT_ID/siraop-frontend frontend-pwa/
+### Produção
 
-# Deploy no Cloud Run
-gcloud run deploy siraop-api --image gcr.io/PROJECT_ID/siraop-api --platform managed
-gcloud run deploy siraop-frontend --image gcr.io/PROJECT_ID/siraop-frontend --platform managed
+#### Backend (Fly.io)
+```bash
+# Instalar Fly CLI
+curl -L https://fly.io/install.sh | sh
+
+# Login no Fly.io
+fly auth login
+
+# Deploy do backend
+cd backend-api
+fly deploy
+```
+
+#### Frontend (Firebase)
+```bash
+# Instalar Firebase CLI
+npm install -g firebase-tools
+
+# Login no Firebase
+firebase login
+
+# Deploy do frontend
+cd frontend-pwa
+firebase deploy
 ```
 
 ## 📱 Funcionalidades
