@@ -40,7 +40,7 @@ export class OcorrenciasService {
   }
 
   async update(id: string, updateOcorrenciaDto: UpdateOcorrenciaDto): Promise<Ocorrencia> {
-    const updateData = { ...updateOcorrenciaDto };
+    const updateData: any = { ...updateOcorrenciaDto };
     
     // Se latitude e longitude foram atualizadas, atualizar geometria PostGIS
     if (updateData.latitude && updateData.longitude) {
