@@ -36,9 +36,9 @@ ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 
 # Copiar dependências e código compilado do estágio de build
-COPY --from=builder /usr/src/app/node_modules ./node_modules
-COPY --from=builder /usr/src/app/dist ./dist
 COPY --from=builder /usr/src/app/package*.json ./
+RUN npm install --production
+COPY --from=builder /usr/src/app/dist ./dist
 
 # Criar usuário não-root para segurança
 RUN addgroup -g 1001 -S nodejs
@@ -52,4 +52,4 @@ USER nestjs
 EXPOSE 8080
 
 # Comando para iniciar a aplicação
-CMD ["node", "dist/main"]
+CMD ["node", "dist/src/main"]
