@@ -1,240 +1,182 @@
-# SIRAOP - Sistema de Registro e Análise de Ocorrências Policiais
+# Supabase CLI (v1)
 
-Sistema mobile-first para registro e análise de ocorrências policiais, desenvolvido com arquitetura moderna e escalável.
+[![Coverage Status](https://coveralls.io/repos/github/supabase/cli/badge.svg?branch=main)](https://coveralls.io/github/supabase/cli?branch=main)
 
-## 🚀 Características
+[Supabase](https://supabase.io) is an open source Firebase alternative. We're building the features of Firebase using enterprise-grade open source tools.
 
-- **Mobile-First**: Interface responsiva otimizada para smartphones
-- **Seguro**: Autenticação JWT e dados sensíveis criptografados
-- **Cloud-Ready**: Pronto para implantação em múltiplas plataformas
-- **Geolocalização**: Integração com PostGIS para consultas espaciais
-- **PWA**: Progressive Web App com funcionalidades offline
-- **Relatórios**: Geração automática de PDFs com Puppeteer
+This repository contains all the functionality for Supabase CLI.
 
-## 🛠️ Stack Tecnológica
+- [x] Running Supabase locally
+- [x] Managing database migrations
+- [x] Creating and deploying Supabase Functions
+- [x] Generating types directly from your database schema
+- [x] Making authenticated HTTP requests to [Management API](https://supabase.com/docs/reference/api/introduction)
 
-### Backend (NestJS)
-- **Framework**: NestJS com TypeScript
-- **Banco de Dados**: Supabase (PostgreSQL + PostGIS)
-- **ORM**: TypeORM
-- **Autenticação**: JWT
-- **Upload**: Supabase Storage
-- **PDF**: Puppeteer
-- **Deploy**: Fly.io
+## Getting started
 
-### Frontend (Next.js 14)
-- **Framework**: Next.js 14 com App Router
-- **Styling**: TailwindCSS
-- **Estado**: Zustand
-- **Mapas**: React-Leaflet
-- **Formulários**: React Hook Form + Zod
-- **HTTP**: Axios
-- **Deploy**: Firebase Hosting
+### Install the CLI
 
-## 📁 Estrutura do Projeto
-
-```
-siraop-project/
-├── backend-api/          # API NestJS
-│   ├── src/
-│   │   ├── auth/         # Autenticação JWT
-│   │   ├── users/        # Usuários (Policiais)
-│   │   ├── ocorrencias/  # Ocorrências
-│   │   ├── pessoas/      # Pessoas/Faccionados
-│   │   ├── veiculos/     # Veículos
-│   │   ├── armas/        # Armas
-│   │   ├── faccoes/      # Facções
-│   │   ├── storage/      # Supabase Storage
-│   │   ├── relatorios/   # Geração de PDF
-│   │   └── gis/          # Utilitários PostGIS
-│   ├── Dockerfile        # Container para Fly.io
-│   └── fly.toml          # Configuração Fly.io
-│
-├── frontend-pwa/         # PWA Next.js
-│   ├── app/
-│   │   ├── login/        # Página de login
-│   │   └── (protected)/  # Rotas protegidas
-│   │       ├── dashboard/     # Dashboard principal
-│   │       ├── ocorrencias/   # CRUD de ocorrências
-│   │       └── pessoas/       # CRUD de pessoas
-│   ├── components/       # Componentes React
-│   ├── lib/             # Configurações e utilitários
-│   ├── store/           # Gerenciamento de estado
-│   ├── firebase.json    # Configuração Firebase
-│   └── .firebaserc      # Projeto Firebase
-│
-└── README.md
-```
-
-## 🚀 Instalação e Configuração
-
-### Pré-requisitos
-- Node.js 18+
-- Supabase (banco de dados)
-- Docker (para desenvolvimento local)
-- Conta Firebase (para frontend)
-- Conta Fly.io (para backend)
-
-### 1. Clone o repositório
-```bash
-git clone <repository-url>
-cd siraop-project
-```
-
-### 2. Backend (API)
+Available via [NPM](https://www.npmjs.com) as dev dependency. To install:
 
 ```bash
-cd backend-api
-
-# Instalar dependências
-npm install
-
-# Configurar variáveis de ambiente
-cp env.example .env
-# Edite o arquivo .env com suas configurações
-
-# Executar migrações (desenvolvimento)
-npm run build
-npm run start:dev
+npm i supabase --save-dev
 ```
 
-### 3. Frontend (PWA)
+To install the beta release channel:
 
 ```bash
-cd frontend-pwa
-
-# Instalar dependências
-npm install
-
-# Configurar variáveis de ambiente
-cp env.example .env.local
-# Edite o arquivo .env.local com suas configurações
-
-# Executar em modo desenvolvimento
-npm run dev
+npm i supabase@beta --save-dev
 ```
 
-### 4. Configurar Supabase
+When installing with yarn 4, you need to disable experimental fetch with the following nodejs config.
+
+```
+NODE_OPTIONS=--no-experimental-fetch yarn add supabase
+```
+
+> **Note**
+For Bun versions below v1.0.17, you must add `supabase` as a [trusted dependency](https://bun.sh/guides/install/trusted) before running `bun add -D supabase`.
+
+<details>
+  <summary><b>macOS</b></summary>
+
+  Available via [Homebrew](https://brew.sh). To install:
+
+  ```sh
+  brew install supabase/tap/supabase
+  ```
+
+  To install the beta release channel:
+  
+  ```sh
+  brew install supabase/tap/supabase-beta
+  brew link --overwrite supabase-beta
+  ```
+  
+  To upgrade:
+
+  ```sh
+  brew upgrade supabase
+  ```
+</details>
+
+<details>
+  <summary><b>Windows</b></summary>
+
+  Available via [Scoop](https://scoop.sh). To install:
+
+  ```powershell
+  scoop bucket add supabase https://github.com/supabase/scoop-bucket.git
+  scoop install supabase
+  ```
+
+  To upgrade:
+
+  ```powershell
+  scoop update supabase
+  ```
+</details>
+
+<details>
+  <summary><b>Linux</b></summary>
+
+  Available via [Homebrew](https://brew.sh) and Linux packages.
+
+  #### via Homebrew
+
+  To install:
+
+  ```sh
+  brew install supabase/tap/supabase
+  ```
+
+  To upgrade:
+
+  ```sh
+  brew upgrade supabase
+  ```
+
+  #### via Linux packages
+
+  Linux packages are provided in [Releases](https://github.com/supabase/cli/releases). To install, download the `.apk`/`.deb`/`.rpm`/`.pkg.tar.zst` file depending on your package manager and run the respective commands.
+
+  ```sh
+  sudo apk add --allow-untrusted <...>.apk
+  ```
+
+  ```sh
+  sudo dpkg -i <...>.deb
+  ```
+
+  ```sh
+  sudo rpm -i <...>.rpm
+  ```
+
+  ```sh
+  sudo pacman -U <...>.pkg.tar.zst
+  ```
+</details>
+
+<details>
+  <summary><b>Other Platforms</b></summary>
+
+  You can also install the CLI via [go modules](https://go.dev/ref/mod#go-install) without the help of package managers.
+
+  ```sh
+  go install github.com/supabase/cli@latest
+  ```
+
+  Add a symlink to the binary in `$PATH` for easier access:
+
+  ```sh
+  ln -s "$(go env GOPATH)/cli" /usr/bin/supabase
+  ```
+
+  This works on other non-standard Linux distros.
+</details>
+
+<details>
+  <summary><b>Community Maintained Packages</b></summary>
+
+  Available via [pkgx](https://pkgx.sh/). Package script [here](https://github.com/pkgxdev/pantry/blob/main/projects/supabase.com/cli/package.yml).
+  To install in your working directory:
+
+  ```bash
+  pkgx install supabase
+  ```
+
+  Available via [Nixpkgs](https://nixos.org/). Package script [here](https://github.com/NixOS/nixpkgs/blob/master/pkgs/development/tools/supabase-cli/default.nix).
+</details>
+
+### Run the CLI
 
 ```bash
-# Instalar Supabase CLI
-npm install -g supabase
-
-# Inicializar projeto Supabase
-supabase init
-
-# Configurar variáveis de ambiente
-# Adicione as credenciais do Supabase no .env
+supabase bootstrap
 ```
 
-## 🐳 Docker
+Or using npx:
 
-### Desenvolvimento Local
 ```bash
-# Backend
-cd backend-api
-docker build -t siraop-api .
-docker run -p 8080:8080 siraop-api
-
-# Frontend
-cd frontend-pwa
-docker build -t siraop-frontend .
-docker run -p 3000:3000 siraop-frontend
+npx supabase bootstrap
 ```
 
-### Produção
+The bootstrap command will guide you through the process of setting up a Supabase project using one of the [starter](https://github.com/supabase-community/supabase-samples/blob/main/samples.json) templates.
 
-#### Backend (Fly.io)
-```bash
-# Instalar Fly CLI
-curl -L https://fly.io/install.sh | sh
+## Docs
 
-# Login no Fly.io
-fly auth login
+Command & config reference can be found [here](https://supabase.com/docs/reference/cli/about).
 
-# Deploy do backend
-cd backend-api
-fly deploy
+## Breaking changes
+
+We follow semantic versioning for changes that directly impact CLI commands, flags, and configurations.
+
+However, due to dependencies on other service images, we cannot guarantee that schema migrations, seed.sql, and generated types will always work for the same CLI major version. If you need such guarantees, we encourage you to pin a specific version of CLI in package.json.
+
+## Developing
+
+To run from source:
+
+```sh
+# Go >= 1.22
+go run . help
 ```
-
-#### Frontend (Firebase)
-```bash
-# Instalar Firebase CLI
-npm install -g firebase-tools
-
-# Login no Firebase
-firebase login
-
-# Deploy do frontend
-cd frontend-pwa
-firebase deploy
-```
-
-## 📱 Funcionalidades
-
-### Dashboard
-- Lista de ocorrências com filtros
-- Seleção múltipla para relatórios
-- Geração de PDFs informativos
-- Interface mobile-first
-
-### Ocorrências
-- CRUD completo de ocorrências
-- Geolocalização com mapas interativos
-- Upload de anexos
-- Compartilhamento via WhatsApp
-
-### Pessoas/Faccionados
-- Cadastro de pessoas com dados sensíveis criptografados
-- Áreas de atuação com polígonos no mapa
-- Upload de fotos
-- Relacionamento com facções
-
-### Relatórios
-- Geração automática de PDFs
-- Seleção múltipla de ocorrências
-- Template profissional
-- Download direto
-
-## 🔒 Segurança
-
-- Autenticação JWT
-- Criptografia de dados sensíveis (CPF)
-- Validação de entrada com class-validator
-- CORS configurado
-- Headers de segurança
-
-## 🌍 Geolocalização
-
-- Integração com PostGIS
-- Consultas espaciais (proximidade)
-- Mapas interativos com Leaflet
-- Seleção de coordenadas
-- Desenho de polígonos
-
-## 📊 Monitoramento
-
-- Logs estruturados
-- Health checks
-- Métricas de performance
-- Tratamento de erros
-
-## 🤝 Contribuição
-
-1. Fork o projeto
-2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
-3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
-4. Push para a branch (`git push origin feature/AmazingFeature`)
-5. Abra um Pull Request
-
-## 📄 Licença
-
-Este projeto é propriedade da instituição e está sob licença proprietária.
-
-## 📞 Suporte
-
-Para suporte técnico, entre em contato com a equipe de desenvolvimento.
-
----
-
-**SIRAOP** - Sistema de Registro e Análise de Ocorrências Policiais
