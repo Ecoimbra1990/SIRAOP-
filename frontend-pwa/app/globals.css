@@ -4,6 +4,19 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
+/* Reset para propriedades CSS obsoletas */
+* {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+/* Remover propriedades obsoletas do IE */
+* {
+  behavior: none !important;
+  filter: none !important;
+  image-rendering: auto !important;
+}
+
 @layer base {
   * {
     @apply border-gray-200;
@@ -69,4 +82,32 @@
   .leaflet-container {
     height: 300px;
   }
+}
+
+/* Correções para propriedades CSS obsoletas */
+* {
+  /* Remover propriedades obsoletas do IE */
+  behavior: none !important;
+  filter: none !important;
+  image-rendering: auto !important;
+  -webkit-text-size-adjust: 100% !important;
+  -ms-text-size-adjust: 100% !important;
+}
+
+/* Correção para seletores incorretos */
+*:not([class*="progid"]) {
+  filter: none !important;
+}
+
+/* Garantir compatibilidade com navegadores modernos */
+html {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
