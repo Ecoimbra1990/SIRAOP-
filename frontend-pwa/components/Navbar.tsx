@@ -12,6 +12,7 @@ import {
   Shield, 
   Building2,
   Database,
+  Map,
   LogOut,
   Menu,
   X
@@ -25,6 +26,7 @@ const navigation = [
   { name: 'Facções', href: '/faccoes', icon: Building2 },
   { name: 'Veículos', href: '/veiculos', icon: Car },
   { name: 'Armas', href: '/armas', icon: Shield },
+  { name: 'Dimensionamento', href: '/dimensionamento', icon: Map },
 ];
 
 export default function Navbar() {

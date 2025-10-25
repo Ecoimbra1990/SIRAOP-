@@ -9,6 +9,7 @@ import {
   Car, 
   Shield, 
   Building2,
+  Map,
   BarChart3,
   Settings,
   Plus,
@@ -109,6 +110,15 @@ export default function AdminPage() {
       color: 'bg-purple-500',
       description: 'Gerenciar facções criminosas',
       actions: ['view', 'create', 'edit', 'delete']
+    },
+    {
+      id: 'dimensionamento',
+      name: 'Dimensionamento',
+      icon: Map,
+      count: 602,
+      color: 'bg-indigo-500',
+      description: 'Gerenciar dimensionamento territorial',
+      actions: ['view', 'import', 'export', 'edit']
     },
     {
       id: 'usuarios',

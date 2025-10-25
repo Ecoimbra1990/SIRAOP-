@@ -10,6 +10,7 @@ import { ArmasModule } from './armas/armas.module';
 import { FaccoesModule } from './faccoes/faccoes.module';
 import { StorageModule } from './storage/storage.module';
 import { RelatoriosModule } from './relatorios/relatorios.module';
+import { DimensionamentoModule } from './dimensionamento/dimensionamento.module';
 
 @Module({
   imports: [
@@ -54,6 +55,7 @@ import { RelatoriosModule } from './relatorios/relatorios.module';
     FaccoesModule,
     StorageModule,
     RelatoriosModule,
+    DimensionamentoModule,
   ],
 })
 export class AppModule {}
