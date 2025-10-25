@@ -11,6 +11,7 @@ import {
   Car, 
   Shield, 
   Building2,
+  Database,
   LogOut,
   Menu,
   X
@@ -18,6 +19,7 @@ import {
 
 const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: Home },
+  { name: 'Admin', href: '/admin', icon: Database },
   { name: 'Ocorrências', href: '/ocorrencias', icon: FileText },
   { name: 'Pessoas', href: '/pessoas', icon: Users },
   { name: 'Facções', href: '/faccoes', icon: Building2 },
