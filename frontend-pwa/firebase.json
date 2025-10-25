@@ -14,29 +14,19 @@
     ],
     "headers": [
       {
-        "source": "**/*.@(js|css)",
+        "source": "**/*",
         "headers": [
           {
             "key": "Cache-Control",
-            "value": "max-age=0"
-          }
-        ]
-      },
-      {
-        "source": "**/*.@(jpg|jpeg|gif|png|svg|webp|ico)",
-        "headers": [
+            "value": "no-cache, no-store, must-revalidate"
+          },
           {
-            "key": "Cache-Control",
-            "value": "max-age=31536000"
-          }
-        ]
-      },
-      {
-        "source": "**/*.html",
-        "headers": [
+            "key": "Pragma",
+            "value": "no-cache"
+          },
           {
-            "key": "Cache-Control",
-            "value": "max-age=0"
+            "key": "Expires",
+            "value": "0"
           }
         ]
       }
