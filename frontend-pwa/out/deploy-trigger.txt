@@ -1,0 +1,6 @@
+# Deploy Trigger
+Deploy realizado em: 2025-10-25 20:09:19
+Arquivos atualizados:
+- index.html
+- admin/index.html  
+- dimensionamento/index.html
