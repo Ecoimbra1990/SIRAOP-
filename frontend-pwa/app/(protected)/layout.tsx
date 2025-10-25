@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useUserStore } from '@/store/userStore';
+import { useAuth } from '@/hooks/useAuth';
 import Navbar from '@/components/Navbar';
 
 export default function ProtectedLayout({
@@ -10,21 +10,35 @@ export default function ProtectedLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { isAuthenticated, isLoading, user, token } = useUserStore();
+  const { isAuthenticated, isLoading, isHydrated, user, token } = useAuth();
   const router = useRouter();
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    // Aguardar a rehidratação do Zustand
-    if (!isLoading) {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (mounted && isHydrated && !isLoading) {
       // Verificar se temos dados válidos de autenticação
       if (!user || !token || !isAuthenticated) {
+        console.log('Redirecionando para login - dados de auth inválidos:', { user, token, isAuthenticated });
         router.push('/login');
       }
     }
-  }, [isAuthenticated, isLoading, user, token, router]);
+  }, [mounted, isAuthenticated, isLoading, isHydrated, user, token, router]);
 
-  // Mostrar loading durante a rehidratação
-  if (isLoading) {
+  // Aguardar montagem do componente
+  if (!mounted) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary-600"></div>
+      </div>
+    );
+  }
+
+  // Mostrar loading durante a hidratação
+  if (!isHydrated || isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-primary-600"></div>
