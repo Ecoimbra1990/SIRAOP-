@@ -32,9 +32,11 @@ api.interceptors.response.use(
   },
   (error) => {
     if (error.response?.status === 401) {
-      // Token expirado ou inválido
-      useUserStore.getState().logout();
-      window.location.href = '/login';
+      // Token expirado ou inválido - apenas se não estivermos já na página de login
+      if (window.location.pathname !== '/login') {
+        useUserStore.getState().logout();
+        window.location.href = '/login';
+      }
     }
     return Promise.reject(error);
   }

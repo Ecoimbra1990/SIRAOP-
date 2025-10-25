@@ -21,11 +21,11 @@ interface AuthState {
 
 export const useUserStore = create<AuthState>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       user: null,
       token: null,
       isAuthenticated: false,
-      isLoading: false,
+      isLoading: true, // Iniciar como loading para verificar persistência
       
       login: (user: User, token: string) => {
         set({
@@ -56,6 +56,15 @@ export const useUserStore = create<AuthState>()(
         token: state.token,
         isAuthenticated: state.isAuthenticated,
       }),
+      onRehydrateStorage: () => (state) => {
+        if (state) {
+          // Verificar se temos dados válidos após rehidratação
+          if (state.user && state.token) {
+            state.isAuthenticated = true;
+          }
+          state.isLoading = false;
+        }
+      },
     }
   )
 );

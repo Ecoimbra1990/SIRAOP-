@@ -10,15 +10,20 @@ export default function ProtectedLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { isAuthenticated, isLoading } = useUserStore();
+  const { isAuthenticated, isLoading, user, token } = useUserStore();
   const router = useRouter();
 
   useEffect(() => {
-    if (!isLoading && !isAuthenticated) {
-      router.push('/login');
+    // Aguardar a rehidratação do Zustand
+    if (!isLoading) {
+      // Verificar se temos dados válidos de autenticação
+      if (!user || !token || !isAuthenticated) {
+        router.push('/login');
+      }
     }
-  }, [isAuthenticated, isLoading, router]);
+  }, [isAuthenticated, isLoading, user, token, router]);
 
+  // Mostrar loading durante a rehidratação
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -27,7 +32,8 @@ export default function ProtectedLayout({
     );
   }
 
-  if (!isAuthenticated) {
+  // Se não está autenticado, não renderizar nada (será redirecionado)
+  if (!isAuthenticated || !user || !token) {
     return null;
   }
 
