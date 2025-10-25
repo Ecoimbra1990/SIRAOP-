@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useUserStore } from '@/store/userStore';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080/api';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://siraop-backend.fly.dev/api';
 
 // Instância base do Axios
 export const api = axios.create({

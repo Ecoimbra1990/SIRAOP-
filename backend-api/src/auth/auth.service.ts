@@ -58,4 +58,35 @@ export class AuthService {
     }
     return user;
   }
+
+  async createAdmin() {
+    // Verificar se já existe um admin
+    const existingAdmin = await this.usersRepository.findOne({ 
+      where: { email: 'admin@siraop.com' } 
+    });
+    
+    if (existingAdmin) {
+      return { message: 'Usuário admin já existe', user: existingAdmin };
+    }
+
+    // Criar usuário admin
+    const hashedPassword = await bcrypt.hash('admin123', 10);
+    
+    const admin = this.usersRepository.create({
+      email: 'admin@siraop.com',
+      password: hashedPassword,
+      nome_completo: 'Administrador SIRAOP',
+      matricula: 'ADMIN001',
+      role: 'admin',
+      ativo: true,
+    });
+
+    const savedAdmin = await this.usersRepository.save(admin);
+    const { password: _, ...result } = savedAdmin as any;
+    
+    return { 
+      message: 'Usuário admin criado com sucesso', 
+      user: result 
+    };
+  }
 }

@@ -1,3 +1,6 @@
+const { execSync } = require('child_process');
+const bcrypt = require('bcrypt');
+
 console.log('🔧 SIRAOP - Sistema de Registro e Análise de Ocorrências Policiais');
 console.log('');
 console.log('✅ Usuário admin criado com sucesso!');
