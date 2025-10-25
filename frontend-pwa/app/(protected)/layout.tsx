@@ -23,7 +23,10 @@ export default function ProtectedLayout({
       // Verificar se temos dados válidos de autenticação
       if (!user || !token || !isAuthenticated) {
         console.log('Redirecionando para login - dados de auth inválidos:', { user, token, isAuthenticated });
-        router.push('/login');
+        // Aguardar um pouco antes de redirecionar para evitar loops
+        setTimeout(() => {
+          router.push('/login');
+        }, 100);
       }
     }
   }, [mounted, isAuthenticated, isLoading, isHydrated, user, token, router]);

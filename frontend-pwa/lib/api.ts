@@ -34,8 +34,12 @@ api.interceptors.response.use(
     if (error.response?.status === 401) {
       // Token expirado ou inválido - apenas se não estivermos já na página de login
       if (window.location.pathname !== '/login') {
+        console.log('Token inválido, fazendo logout...');
         useUserStore.getState().logout();
-        window.location.href = '/login';
+        // Usar router.push em vez de window.location.href para evitar recarregamento
+        setTimeout(() => {
+          window.location.href = '/login';
+        }, 100);
       }
     }
     return Promise.reject(error);
