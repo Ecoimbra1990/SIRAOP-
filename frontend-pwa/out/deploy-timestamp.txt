@@ -1,8 +1,0 @@
-# Firebase Hosting Deploy
-Deploy realizado em: 2025-10-25 20:13:32
-Arquivos atualizados:
-- index.html (correções de autenticação)
-- admin/index.html (painel administrativo)
-- dimensionamento/index.html (módulo de dimensionamento)
-
-Status: Deploy forçado para resolver problema de cache
