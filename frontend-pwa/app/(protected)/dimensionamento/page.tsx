@@ -136,9 +136,9 @@ export default function DimensionamentoPage() {
     } catch (error) {
       console.error('Erro ao carregar dimensionamentos:', error);
       console.error('Detalhes do erro:', {
-        message: error.message,
-        status: error.response?.status,
-        data: error.response?.data
+        message: error instanceof Error ? error.message : 'Erro desconhecido',
+        status: (error as any)?.response?.status,
+        data: (error as any)?.response?.data
       });
       
       // Fallback para dados mock se a API falhar
@@ -204,12 +204,12 @@ export default function DimensionamentoPage() {
         const items = statsData.items;
         const stats = {
           total: statsData.total,
-          porRegiao: {},
-          porRisp: {},
-          porAisp: {}
+          porRegiao: {} as Record<string, number>,
+          porRisp: {} as Record<string, number>,
+          porAisp: {} as Record<string, number>
         };
 
-        items.forEach(item => {
+        items.forEach((item: Dimensionamento) => {
           stats.porRegiao[item.regiao] = (stats.porRegiao[item.regiao] || 0) + 1;
           stats.porRisp[item.risp] = (stats.porRisp[item.risp] || 0) + 1;
           stats.porAisp[item.aisp] = (stats.porAisp[item.aisp] || 0) + 1;
@@ -223,12 +223,12 @@ export default function DimensionamentoPage() {
         // Se a resposta é um array simples
         const stats = {
           total: statsData.length,
-          porRegiao: {},
-          porRisp: {},
-          porAisp: {}
+          porRegiao: {} as Record<string, number>,
+          porRisp: {} as Record<string, number>,
+          porAisp: {} as Record<string, number>
         };
 
-        statsData.forEach(item => {
+        statsData.forEach((item: Dimensionamento) => {
           stats.porRegiao[item.regiao] = (stats.porRegiao[item.regiao] || 0) + 1;
           stats.porRisp[item.risp] = (stats.porRisp[item.risp] || 0) + 1;
           stats.porAisp[item.aisp] = (stats.porAisp[item.aisp] || 0) + 1;
@@ -251,6 +251,11 @@ export default function DimensionamentoPage() {
     } catch (error) {
       console.error('❌ Erro ao carregar estatísticas:', error);
       console.log('🔍 VERCEL DEBUG - Erro capturado, definindo stats como zero');
+      console.log('🔍 VERCEL DEBUG - Erro details:', {
+        message: error instanceof Error ? error.message : 'Erro desconhecido',
+        status: (error as any)?.response?.status,
+        data: (error as any)?.response?.data
+      });
       // Banco vazio ou erro - mostrar zeros
       setStats({
         total: 0,
@@ -325,11 +330,11 @@ export default function DimensionamentoPage() {
     } catch (error) {
       console.error('❌ Erro na importação automática:', error);
       console.error('❌ Detalhes do erro:', {
-        message: error.message,
-        status: error.response?.status,
-        data: error.response?.data
+        message: error instanceof Error ? error.message : 'Erro desconhecido',
+        status: (error as any)?.response?.status,
+        data: (error as any)?.response?.data
       });
-      alert(`Erro ao importar dados automaticamente: ${error.message}. Verifique o console para mais detalhes.`);
+      alert(`Erro ao importar dados automaticamente: ${error instanceof Error ? error.message : 'Erro desconhecido'}. Verifique o console para mais detalhes.`);
     } finally {
       setIsImporting(false);
     }
