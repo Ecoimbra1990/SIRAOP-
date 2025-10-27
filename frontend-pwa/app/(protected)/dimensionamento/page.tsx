@@ -182,6 +182,8 @@ export default function DimensionamentoPage() {
 
   const loadStats = async () => {
     try {
+      console.log('🔍 VERCEL DEBUG - Iniciando loadStats');
+      console.log('🔍 VERCEL DEBUG - Stats atual:', stats);
       console.log('📊 Carregando estatísticas...');
       
       // Tentar carregar dados sem paginação para obter todos os registros
@@ -191,6 +193,8 @@ export default function DimensionamentoPage() {
       });
       
       console.log('📊 Dados recebidos para estatísticas:', statsData);
+      console.log('🔍 VERCEL DEBUG - Tipo dos dados:', typeof statsData);
+      console.log('🔍 VERCEL DEBUG - É array?', Array.isArray(statsData));
 
       // Se a resposta é paginada, usar os dados paginados
       if (statsData && typeof statsData === 'object' && 'items' in statsData) {
@@ -209,7 +213,9 @@ export default function DimensionamentoPage() {
         });
 
         console.log('📊 Estatísticas calculadas:', stats);
+        console.log('🔍 VERCEL DEBUG - Definindo stats:', stats);
         setStats(stats);
+        console.log('🔍 VERCEL DEBUG - Stats definido com sucesso');
       } else if (Array.isArray(statsData)) {
         // Se a resposta é um array simples
         const stats = {
@@ -226,7 +232,9 @@ export default function DimensionamentoPage() {
         });
 
         console.log('📊 Estatísticas calculadas:', stats);
+        console.log('🔍 VERCEL DEBUG - Definindo stats:', stats);
         setStats(stats);
+        console.log('🔍 VERCEL DEBUG - Stats definido com sucesso');
       } else {
         // Banco vazio - mostrar zeros
         console.log('📊 Banco vazio - definindo estatísticas como zero');
@@ -239,6 +247,7 @@ export default function DimensionamentoPage() {
       }
     } catch (error) {
       console.error('❌ Erro ao carregar estatísticas:', error);
+      console.log('🔍 VERCEL DEBUG - Erro capturado, definindo stats como zero');
       // Banco vazio ou erro - mostrar zeros
       setStats({
         total: 0,
@@ -246,6 +255,7 @@ export default function DimensionamentoPage() {
         porRisp: {},
         porAisp: {}
       });
+      console.log('🔍 VERCEL DEBUG - Stats definido como zero após erro');
     }
   };
 
