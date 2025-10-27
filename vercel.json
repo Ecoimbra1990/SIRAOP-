@@ -1,0 +1,8 @@
+{
+  "buildCommand": "cd frontend-pwa && npm run build",
+  "outputDirectory": "frontend-pwa/out",
+  "framework": "nextjs",
+  "installCommand": "cd frontend-pwa && npm install",
+  "devCommand": "cd frontend-pwa && npm run dev",
+  "regions": ["gru1"]
+}

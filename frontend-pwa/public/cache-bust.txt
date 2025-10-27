@@ -1,0 +1,3 @@
+# Cache bust file - força atualização do Vercel
+# Gerado em: $(Get-Date)
+# Versão: 2.0 - Estatísticas dinâmicas implementadas
