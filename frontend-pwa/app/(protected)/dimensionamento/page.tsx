@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { dimensionamentoApi } from '@/lib/api';
 import { 
   MapPin, 
   Search, 
@@ -42,12 +43,18 @@ export default function DimensionamentoPage() {
   const [dimensionamentos, setDimensionamentos] = useState<Dimensionamento[]>([]);
   const [stats, setStats] = useState<Stats | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [filterRegiao, setFilterRegiao] = useState('');
   const [filterOpm, setFilterOpm] = useState('');
   const [showImportModal, setShowImportModal] = useState(false);
   const [importData, setImportData] = useState('');
   const [importObservacoes, setImportObservacoes] = useState('');
+  const [isImporting, setIsImporting] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
+  const [totalCount, setTotalCount] = useState(0);
+  const [debugInfo, setDebugInfo] = useState<any>(null);
   
   const router = useRouter();
 
@@ -56,10 +63,82 @@ export default function DimensionamentoPage() {
     loadStats();
   }, []);
 
-  const loadDimensionamentos = async () => {
+  useEffect(() => {
+    // Recarregar quando filtros mudarem
+    const timeoutId = setTimeout(() => {
+      loadDimensionamentos(1, false);
+    }, 500); // Debounce de 500ms
+
+    return () => clearTimeout(timeoutId);
+  }, [searchTerm, filterRegiao, filterOpm]);
+
+  const loadDimensionamentos = async (page = 1, append = false) => {
     try {
-      setIsLoading(true);
-      // Simular carregamento de dados
+      if (page === 1) {
+        setIsLoading(true);
+      } else {
+        setIsLoadingMore(true);
+      }
+
+      console.log('🔍 Carregando dimensionamentos...', {
+        page,
+        limit: 50,
+        search: searchTerm,
+        regiao: filterRegiao,
+        opm: filterOpm
+      });
+
+      const data = await dimensionamentoApi.getAll({
+        page,
+        limit: 50,
+        search: searchTerm,
+        regiao: filterRegiao,
+        opm: filterOpm
+      });
+
+      console.log('✅ Dados recebidos da API:', data);
+      console.log('✅ Tipo dos dados:', typeof data);
+      console.log('✅ É array?', Array.isArray(data));
+      console.log('✅ Tem propriedade items?', data && typeof data === 'object' && 'items' in data);
+
+      // Verificar se a resposta é paginada ou um array simples
+      if (data && typeof data === 'object' && 'items' in data) {
+        // Resposta paginada
+        console.log('📊 Processando resposta paginada:', data);
+        if (append) {
+          setDimensionamentos(prev => [...prev, ...data.items]);
+        } else {
+          setDimensionamentos(data.items);
+        }
+        
+        setTotalCount(data.total);
+        setHasMore(data.hasMore);
+        setCurrentPage(page);
+      } else if (Array.isArray(data)) {
+        // Resposta é um array simples
+        console.log('📊 Processando array simples:', data);
+        if (append) {
+          setDimensionamentos(prev => [...prev, ...data]);
+        } else {
+          setDimensionamentos(data);
+        }
+        
+        setTotalCount(data.length);
+        setHasMore(false);
+        setCurrentPage(page);
+      } else {
+        console.log('❌ Formato de resposta inválido:', data);
+        throw new Error('Formato de resposta inválido');
+      }
+    } catch (error) {
+      console.error('Erro ao carregar dimensionamentos:', error);
+      console.error('Detalhes do erro:', {
+        message: error.message,
+        status: error.response?.status,
+        data: error.response?.data
+      });
+      
+      // Fallback para dados mock se a API falhar
       const mockData: Dimensionamento[] = [
         {
           id: '1',
@@ -87,87 +166,182 @@ export default function DimensionamentoPage() {
         }
       ];
       setDimensionamentos(mockData);
-    } catch (error) {
-      console.error('Erro ao carregar dimensionamentos:', error);
+      setTotalCount(mockData.length);
+      setHasMore(false);
     } finally {
       setIsLoading(false);
+      setIsLoadingMore(false);
+    }
+  };
+
+  const loadMore = () => {
+    if (hasMore && !isLoadingMore) {
+      loadDimensionamentos(currentPage + 1, true);
     }
   };
 
   const loadStats = async () => {
     try {
-      // Simular carregamento de estatísticas
-      setStats({
-        total: 602,
-        porRegiao: {
-          'Capital': 185,
-          'Interior': 400,
-          'RMS': 17
-        },
-        porRisp: {
-          'Atlântico': 45,
-          'BTS': 38,
-          'Central': 52,
-          'Chapada': 25,
-          'Extremo Sul': 15,
-          'Leste': 35,
-          'Meio-Oeste': 28,
-          'Nordeste': 22,
-          'Norte': 18,
-          'Oeste': 12,
-          'Recôncavo': 20,
-          'RMS': 17,
-          'Sudoeste': 45,
-          'Sul': 30
-        },
-        porAisp: {
-          '01 - Barris': 8,
-          '02 - Liberdade': 12,
-          '03 - Bonfim': 15,
-          '04 - São Caetano': 10,
-          '05 - Periperi': 18,
-          '06 - Brotas': 22,
-          '07 - Rio Vermelho': 15,
-          '08 - CIA': 5,
-          '09 - Boca do Rio': 8,
-          '10 - Pau da Lima': 12,
-          '11 - Tancredo Neves': 25,
-          '12 - Itapuã': 20,
-          '13 - Cajazeiras': 18,
-          '14 - Barra': 10,
-          '15 - Nordeste de Amaralina': 8,
-          '16 - Pituba': 12
-        }
+      console.log('📊 Carregando estatísticas...');
+      
+      // Tentar carregar dados sem paginação para obter todos os registros
+      const statsData = await dimensionamentoApi.getAll({
+        page: 1,
+        limit: 1000 // Limite alto para pegar todos os dados
       });
+      
+      console.log('📊 Dados recebidos para estatísticas:', statsData);
+
+      // Se a resposta é paginada, usar os dados paginados
+      if (statsData && typeof statsData === 'object' && 'items' in statsData) {
+        const items = statsData.items;
+        const stats = {
+          total: statsData.total,
+          porRegiao: {},
+          porRisp: {},
+          porAisp: {}
+        };
+
+        items.forEach(item => {
+          stats.porRegiao[item.regiao] = (stats.porRegiao[item.regiao] || 0) + 1;
+          stats.porRisp[item.risp] = (stats.porRisp[item.risp] || 0) + 1;
+          stats.porAisp[item.aisp] = (stats.porAisp[item.aisp] || 0) + 1;
+        });
+
+        console.log('📊 Estatísticas calculadas:', stats);
+        setStats(stats);
+      } else if (Array.isArray(statsData)) {
+        // Se a resposta é um array simples
+        const stats = {
+          total: statsData.length,
+          porRegiao: {},
+          porRisp: {},
+          porAisp: {}
+        };
+
+        statsData.forEach(item => {
+          stats.porRegiao[item.regiao] = (stats.porRegiao[item.regiao] || 0) + 1;
+          stats.porRisp[item.risp] = (stats.porRisp[item.risp] || 0) + 1;
+          stats.porAisp[item.aisp] = (stats.porAisp[item.aisp] || 0) + 1;
+        });
+
+        console.log('📊 Estatísticas calculadas:', stats);
+        setStats(stats);
+      } else {
+        // Banco vazio - mostrar zeros
+        console.log('📊 Banco vazio - definindo estatísticas como zero');
+        setStats({
+          total: 0,
+          porRegiao: {},
+          porRisp: {},
+          porAisp: {}
+        });
+      }
     } catch (error) {
-      console.error('Erro ao carregar estatísticas:', error);
+      console.error('❌ Erro ao carregar estatísticas:', error);
+      // Banco vazio ou erro - mostrar zeros
+      setStats({
+        total: 0,
+        porRegiao: {},
+        porRisp: {},
+        porAisp: {}
+      });
     }
   };
 
   const handleImport = async () => {
     try {
-      // Implementar importação
-      console.log('Importando dados:', importData);
+      if (!importData.trim()) {
+        alert('Por favor, cole o conteúdo do CSV antes de importar.');
+        return;
+      }
+
+      setIsImporting(true);
+      const result = await dimensionamentoApi.import({
+        csvContent: importData,
+        observacoes: importObservacoes
+      });
+
+      console.log('Importação realizada:', result);
+      alert(`Importação concluída! ${result.imported} registros importados.${result.errors.length > 0 ? ` ${result.errors.length} erros encontrados.` : ''}`);
+      
       setShowImportModal(false);
       setImportData('');
       setImportObservacoes('');
+      
+      // Recarregar dados após importação
       loadDimensionamentos();
+      loadStats();
     } catch (error) {
       console.error('Erro na importação:', error);
+      alert('Erro ao importar dados. Verifique o console para mais detalhes.');
+    } finally {
+      setIsImporting(false);
     }
   };
 
-  const filteredDimensionamentos = dimensionamentos.filter(item => {
-    const matchesSearch = item.municipio_bairro.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         item.opm.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         item.risp.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         item.aisp.toLowerCase().includes(searchTerm.toLowerCase());
+  const loadSampleData = async () => {
+    try {
+      setIsImporting(true);
+      
+      console.log('🔍 Iniciando importação automática...');
+      
+      // Carregar dados do arquivo CSV local
+      const response = await fetch('/dimensionamento.csv');
+      if (!response.ok) {
+        throw new Error(`Erro ao carregar CSV: ${response.status} ${response.statusText}`);
+      }
+      
+      const csvContent = await response.text();
+      console.log('✅ CSV carregado:', csvContent.length, 'caracteres');
+      console.log('📊 Primeiras linhas do CSV:', csvContent.split('\n').slice(0, 5));
+      
+      console.log('📤 Enviando para API...');
+      const result = await dimensionamentoApi.import({
+        csvContent,
+        observacoes: 'Importação automática dos dados de dimensionamento'
+      });
+
+      console.log('✅ Importação automática realizada:', result);
+      alert(`Importação automática concluída! ${result.imported} registros importados.${result.errors.length > 0 ? ` ${result.errors.length} erros encontrados.` : ''}`);
+      
+      // Recarregar dados após importação
+      console.log('🔄 Recarregando dados...');
+      loadDimensionamentos();
+      loadStats();
+    } catch (error) {
+      console.error('❌ Erro na importação automática:', error);
+      console.error('❌ Detalhes do erro:', {
+        message: error.message,
+        status: error.response?.status,
+        data: error.response?.data
+      });
+      alert(`Erro ao importar dados automaticamente: ${error.message}. Verifique o console para mais detalhes.`);
+    } finally {
+      setIsImporting(false);
+    }
+  };
+
+  const showDebugInfo = () => {
+    const debug = {
+      dimensionamentos: dimensionamentos.length,
+      stats: stats,
+      totalCount,
+      isLoading,
+      isLoadingMore,
+      hasMore,
+      currentPage,
+      searchTerm,
+      filterRegiao,
+      filterOpm,
+      apiUrl: process.env.NEXT_PUBLIC_API_URL || 'https://siraop-backend.fly.dev/api',
+      timestamp: new Date().toISOString()
+    };
     
-    const matchesRegiao = !filterRegiao || item.regiao === filterRegiao;
-    const matchesOpm = !filterOpm || item.opm.includes(filterOpm);
-    
-    return matchesSearch && matchesRegiao && matchesOpm;
-  });
+    setDebugInfo(debug);
+    console.log('🔍 Debug Info:', debug);
+  };
+
 
   if (isLoading) {
     return (
@@ -193,6 +367,23 @@ export default function DimensionamentoPage() {
           </div>
           <div className="flex items-center gap-4">
             <button
+              onClick={loadSampleData}
+              disabled={isImporting}
+              className="btn-outline flex items-center gap-2"
+            >
+              {isImporting ? (
+                <>
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-gray-600"></div>
+                  Carregando...
+                </>
+              ) : (
+                <>
+                  <Upload className="h-4 w-4" />
+                  Carregar Dados
+                </>
+              )}
+            </button>
+            <button
               onClick={() => setShowImportModal(true)}
               className="btn-outline flex items-center gap-2"
             >
@@ -207,62 +398,87 @@ export default function DimensionamentoPage() {
               <Plus className="h-4 w-4" />
               Novo
             </button>
+            <button
+              onClick={showDebugInfo}
+              className="btn-outline flex items-center gap-2"
+            >
+              <Search className="h-4 w-4" />
+              Debug
+            </button>
           </div>
         </div>
       </div>
 
-      {/* Estatísticas */}
-      {stats && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <div className="card">
-            <div className="card-content">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-medium text-gray-600">Total de Registros</p>
-                  <p className="text-2xl font-bold text-gray-900">{stats.total}</p>
-                </div>
-                <MapPin className="h-8 w-8 text-primary-600" />
-              </div>
-            </div>
+      {/* Debug Info */}
+      {debugInfo && (
+        <div className="card mb-6">
+          <div className="card-header">
+            <h3 className="card-title">Informações de Debug</h3>
           </div>
-          
-          <div className="card">
-            <div className="card-content">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-medium text-gray-600">Regiões</p>
-                  <p className="text-2xl font-bold text-blue-600">{Object.keys(stats.porRegiao).length}</p>
-                </div>
-                <Building2 className="h-8 w-8 text-blue-500" />
-              </div>
-            </div>
-          </div>
-
-          <div className="card">
-            <div className="card-content">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-medium text-gray-600">RISP</p>
-                  <p className="text-2xl font-bold text-green-600">{Object.keys(stats.porRisp).length}</p>
-                </div>
-                <Users className="h-8 w-8 text-green-500" />
-              </div>
-            </div>
-          </div>
-
-          <div className="card">
-            <div className="card-content">
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-medium text-gray-600">AISP</p>
-                  <p className="text-2xl font-bold text-orange-600">{Object.keys(stats.porAisp).length}</p>
-                </div>
-                <Shield className="h-8 w-8 text-orange-500" />
-              </div>
-            </div>
+          <div className="card-content">
+            <pre className="bg-gray-100 p-4 rounded text-sm overflow-auto">
+              {JSON.stringify(debugInfo, null, 2)}
+            </pre>
+            <button
+              onClick={() => setDebugInfo(null)}
+              className="btn-outline mt-4"
+            >
+              Fechar Debug
+            </button>
           </div>
         </div>
       )}
+
+      {/* Estatísticas */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        <div className="card">
+          <div className="card-content">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-gray-600">Total de Registros</p>
+                <p className="text-2xl font-bold text-gray-900">{stats?.total || 0}</p>
+              </div>
+              <MapPin className="h-8 w-8 text-primary-600" />
+            </div>
+          </div>
+        </div>
+        
+        <div className="card">
+          <div className="card-content">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-gray-600">Regiões</p>
+                <p className="text-2xl font-bold text-blue-600">{stats ? Object.keys(stats.porRegiao).length : 0}</p>
+              </div>
+              <Building2 className="h-8 w-8 text-blue-500" />
+            </div>
+          </div>
+        </div>
+
+        <div className="card">
+          <div className="card-content">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-gray-600">RISP</p>
+                <p className="text-2xl font-bold text-green-600">{stats ? Object.keys(stats.porRisp).length : 0}</p>
+              </div>
+              <Users className="h-8 w-8 text-green-500" />
+            </div>
+          </div>
+        </div>
+
+        <div className="card">
+          <div className="card-content">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm font-medium text-gray-600">AISP</p>
+                <p className="text-2xl font-bold text-orange-600">{stats ? Object.keys(stats.porAisp).length : 0}</p>
+              </div>
+              <Shield className="h-8 w-8 text-orange-500" />
+            </div>
+          </div>
+        </div>
+      </div>
 
       {/* Filtros */}
       <div className="card mb-6">
@@ -334,7 +550,7 @@ export default function DimensionamentoPage() {
       <div className="card">
         <div className="card-header">
           <h2 className="card-title">
-            Dimensionamento Territorial ({filteredDimensionamentos.length} registros)
+            Dimensionamento Territorial ({totalCount} registros)
           </h2>
         </div>
         <div className="card-content p-0">
@@ -366,7 +582,7 @@ export default function DimensionamentoPage() {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {filteredDimensionamentos.map((item) => (
+                {dimensionamentos.map((item) => (
                   <tr key={item.id} className="hover:bg-gray-50">
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                       {item.codigo}
@@ -410,6 +626,29 @@ export default function DimensionamentoPage() {
               </tbody>
             </table>
           </div>
+          
+          {/* Botão Carregar Mais */}
+          {hasMore && (
+            <div className="p-4 border-t border-gray-200 text-center">
+              <button
+                onClick={loadMore}
+                disabled={isLoadingMore}
+                className="btn-outline flex items-center gap-2 mx-auto"
+              >
+                {isLoadingMore ? (
+                  <>
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-gray-600"></div>
+                    Carregando...
+                  </>
+                ) : (
+                  <>
+                    <Plus className="h-4 w-4" />
+                    Carregar Mais ({totalCount - dimensionamentos.length} restantes)
+                  </>
+                )}
+              </button>
+            </div>
+          )}
         </div>
       </div>
 
@@ -458,9 +697,17 @@ export default function DimensionamentoPage() {
               </button>
               <button
                 onClick={handleImport}
-                className="btn-primary"
+                disabled={isImporting}
+                className="btn-primary flex items-center gap-2"
               >
-                Importar
+                {isImporting ? (
+                  <>
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                    Importando...
+                  </>
+                ) : (
+                  'Importar'
+                )}
               </button>
             </div>
           </div>

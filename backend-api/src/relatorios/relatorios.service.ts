@@ -8,8 +8,11 @@ export class RelatoriosService {
 
   async gerarInformativoPDF(ocorrenciaIds: string[]): Promise<Buffer> {
     try {
+      console.log('Iniciando geração de PDF para ocorrências:', ocorrenciaIds);
+      
       // Buscar dados das ocorrências
       const ocorrencias = await this.ocorrenciasService.findByIds(ocorrenciaIds);
+      console.log('Ocorrências encontradas:', ocorrencias.length);
       
       if (ocorrencias.length === 0) {
         throw new Error('Nenhuma ocorrência encontrada');
@@ -17,6 +20,7 @@ export class RelatoriosService {
 
       // Gerar HTML do relatório
       const html = this.gerarHTMLRelatorio(ocorrencias);
+      console.log('HTML gerado com sucesso');
 
       // Configurar Puppeteer para Cloud Run
       const browser = await puppeteer.launch({
@@ -33,9 +37,11 @@ export class RelatoriosService {
         ],
         executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || undefined,
       });
+      console.log('Browser Puppeteer iniciado');
 
       const page = await browser.newPage();
       await page.setContent(html, { waitUntil: 'networkidle0' });
+      console.log('Conteúdo HTML carregado na página');
 
       // Gerar PDF
       const pdf = await page.pdf({
@@ -48,10 +54,14 @@ export class RelatoriosService {
           left: '20mm',
         },
       });
+      console.log('PDF gerado com sucesso');
 
       await browser.close();
+      console.log('Browser fechado');
+      
       return pdf;
     } catch (error) {
+      console.error('Erro detalhado na geração de PDF:', error);
       throw new Error(`Erro ao gerar PDF: ${error.message}`);
     }
   }

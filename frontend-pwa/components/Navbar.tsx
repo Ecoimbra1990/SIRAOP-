@@ -15,7 +15,8 @@ import {
   Map,
   LogOut,
   Menu,
-  X
+  X,
+  User
 } from 'lucide-react';
 
 const navigation = [
@@ -47,25 +48,30 @@ export default function Navbar() {
   return (
     <>
       {/* Desktop Navbar */}
-      <nav className="bg-white shadow-sm border-b border-gray-200">
-        <div className="container mx-auto px-4">
+      <nav className="bg-white shadow-lg border-b border-gray-200 sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
               <div className="flex-shrink-0">
-                <h1 className="text-xl font-bold text-primary-600">SIRAOP</h1>
+                <div className="flex items-center">
+                  <div className="h-8 w-8 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center mr-3">
+                    <Shield className="h-5 w-5 text-white" />
+                  </div>
+                  <h1 className="text-xl font-bold text-gray-900">SIRAOP</h1>
+                </div>
               </div>
               
-              <div className="hidden md:block ml-10">
-                <div className="flex items-baseline space-x-4">
+              <div className="hidden lg:block ml-10">
+                <div className="flex items-baseline space-x-1">
                   {navigation.map((item) => {
                     const Icon = item.icon;
                     return (
                       <button
                         key={item.name}
                         onClick={() => router.push(item.href)}
-                        className={`flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                        className={`flex items-center px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                           isActive(item.href)
-                            ? 'bg-primary-100 text-primary-700'
+                            ? 'bg-blue-100 text-blue-700 shadow-sm'
                             : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
                         }`}
                       >
@@ -78,14 +84,20 @@ export default function Navbar() {
               </div>
             </div>
 
-            <div className="hidden md:block">
+            <div className="hidden lg:block">
               <div className="flex items-center space-x-4">
-                <span className="text-sm text-gray-600">
-                  {user?.nome_completo}
-                </span>
+                <div className="flex items-center space-x-3">
+                  <div className="h-8 w-8 bg-gray-100 rounded-full flex items-center justify-center">
+                    <User className="h-4 w-4 text-gray-600" />
+                  </div>
+                  <div className="text-sm">
+                    <p className="font-medium text-gray-900">{user?.nome_completo}</p>
+                    <p className="text-gray-500">{user?.matricula}</p>
+                  </div>
+                </div>
                 <button
                   onClick={handleLogout}
-                  className="flex items-center px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors"
+                  className="flex items-center px-3 py-2 rounded-lg text-sm font-medium text-gray-600 hover:text-red-600 hover:bg-red-50 transition-all duration-200"
                 >
                   <LogOut className="h-4 w-4 mr-2" />
                   Sair
@@ -94,10 +106,10 @@ export default function Navbar() {
             </div>
 
             {/* Mobile menu button */}
-            <div className="md:hidden">
+            <div className="lg:hidden">
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                className="p-2 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors"
               >
                 {isMobileMenuOpen ? (
                   <X className="h-6 w-6" />
@@ -112,8 +124,8 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden bg-white border-b border-gray-200">
-          <div className="px-2 pt-2 pb-3 space-y-1">
+        <div className="lg:hidden bg-white border-b border-gray-200 shadow-lg">
+          <div className="px-4 pt-2 pb-3 space-y-1">
             {navigation.map((item) => {
               const Icon = item.icon;
               return (
@@ -123,27 +135,33 @@ export default function Navbar() {
                     router.push(item.href);
                     setIsMobileMenuOpen(false);
                   }}
-                  className={`flex items-center w-full px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                  className={`flex items-center w-full px-3 py-3 rounded-lg text-sm font-medium transition-all duration-200 ${
                     isActive(item.href)
-                      ? 'bg-primary-100 text-primary-700'
+                      ? 'bg-blue-100 text-blue-700'
                       : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
                   }`}
                 >
-                  <Icon className="h-4 w-4 mr-3" />
+                  <Icon className="h-5 w-5 mr-3" />
                   {item.name}
                 </button>
               );
             })}
             
-            <div className="border-t border-gray-200 pt-2 mt-2">
-              <div className="px-3 py-2 text-sm text-gray-600">
-                {user?.nome_completo}
+            <div className="border-t border-gray-200 pt-3 mt-3">
+              <div className="flex items-center px-3 py-2">
+                <div className="h-8 w-8 bg-gray-100 rounded-full flex items-center justify-center mr-3">
+                  <User className="h-4 w-4 text-gray-600" />
+                </div>
+                <div className="text-sm">
+                  <p className="font-medium text-gray-900">{user?.nome_completo}</p>
+                  <p className="text-gray-500">{user?.matricula}</p>
+                </div>
               </div>
               <button
                 onClick={handleLogout}
-                className="flex items-center w-full px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors"
+                className="flex items-center w-full px-3 py-3 rounded-lg text-sm font-medium text-gray-600 hover:text-red-600 hover:bg-red-50 transition-all duration-200"
               >
-                <LogOut className="h-4 w-4 mr-3" />
+                <LogOut className="h-5 w-5 mr-3" />
                 Sair
               </button>
             </div>

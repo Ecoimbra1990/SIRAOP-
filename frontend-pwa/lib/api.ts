@@ -167,6 +167,72 @@ export const faccoesApi = {
   },
 };
 
+// Funções de API para armas
+export const armasApi = {
+  getAll: async () => {
+    const response = await api.get('/armas');
+    return response.data;
+  },
+  
+  getById: async (id: string) => {
+    const response = await api.get(`/armas/${id}`);
+    return response.data;
+  },
+  
+  create: async (data: any) => {
+    const response = await api.post('/armas', data);
+    return response.data;
+  },
+  
+  update: async (id: string, data: any) => {
+    const response = await api.patch(`/armas/${id}`, data);
+    return response.data;
+  },
+  
+  delete: async (id: string) => {
+    const response = await api.delete(`/armas/${id}`);
+    return response.data;
+  },
+  
+  findByNumeroSerie: async (numeroSerie: string) => {
+    const response = await api.get(`/armas/numero-serie/${numeroSerie}`);
+    return response.data;
+  },
+};
+
+// Funções de API para veículos
+export const veiculosApi = {
+  getAll: async () => {
+    const response = await api.get('/veiculos');
+    return response.data;
+  },
+  
+  getById: async (id: string) => {
+    const response = await api.get(`/veiculos/${id}`);
+    return response.data;
+  },
+  
+  create: async (data: any) => {
+    const response = await api.post('/veiculos', data);
+    return response.data;
+  },
+  
+  update: async (id: string, data: any) => {
+    const response = await api.patch(`/veiculos/${id}`, data);
+    return response.data;
+  },
+  
+  delete: async (id: string) => {
+    const response = await api.delete(`/veiculos/${id}`);
+    return response.data;
+  },
+  
+  findByPlaca: async (placa: string) => {
+    const response = await api.get(`/veiculos/placa/${placa}`);
+    return response.data;
+  },
+};
+
 // Funções de API para relatórios
 export const relatoriosApi = {
   gerarInformativoPDF: async (ocorrenciaIds: string[]) => {
@@ -186,6 +252,45 @@ export const relatoriosApi = {
     link.remove();
     window.URL.revokeObjectURL(url);
     
+    return response.data;
+  },
+};
+
+// Funções de API para dimensionamento
+export const dimensionamentoApi = {
+  getAll: async (params?: {
+    page?: number;
+    limit?: number;
+    search?: string;
+    regiao?: string;
+    opm?: string;
+  }) => {
+    const response = await api.get('/dimensionamento', { params });
+    return response.data;
+  },
+  
+  getById: async (id: string) => {
+    const response = await api.get(`/dimensionamento/${id}`);
+    return response.data;
+  },
+  
+  create: async (data: any) => {
+    const response = await api.post('/dimensionamento', data);
+    return response.data;
+  },
+  
+  update: async (id: string, data: any) => {
+    const response = await api.patch(`/dimensionamento/${id}`, data);
+    return response.data;
+  },
+  
+  delete: async (id: string) => {
+    const response = await api.delete(`/dimensionamento/${id}`);
+    return response.data;
+  },
+  
+  import: async (data: any) => {
+    const response = await api.post('/dimensionamento/import', data);
     return response.data;
   },
 };

@@ -1,0 +1,601 @@
+﻿ID;REGIAO;MUNICIPIO/BAIRRO;OPM ;RISP;AISP
+1;Capital;Acupe;26ª CIPM - Brotas;Atlântico;06 - Brotas
+2;Capital;Aeroporto;15ª CIPM - Itapuã;Atlântico;12 - Itapuã
+3;Capital;Águas Claras;3ª CIPM - Cajazeiras;Central;13 - Cajazeiras
+4;Capital;Alto da Terezinha;18ª CIPM - Periperi;BTS;05 - Periperi
+5;Capital;Alto das Pombas;41ª CIPM - Federação;Atlântico;07 - Rio Vermelho
+6;Capital;Alto do Cabrito;14ª CIPM - Lobato;BTS;05 - Periperi
+7;Capital;Alto do Coqueirinho;15ª CIPM - Itapuã;Atlântico;12 - Itapuã
+8;Capital;Amaralina;40ª CIPM - Nordeste de Amaralina;Atlântico;15 - Nordeste de Amaralina
+10;Capital;Arenoso;23ª CIPM - Tancredo Neves;Central;11 - Tancredo Neves
+11;Capital;Arraial do Retiro;23ª CIPM - Tancredo Neves;Central;11 - Tancredo Neves
+12;Capital;Bairro da Paz;15ª CIPM - Itapuã;Atlântico;12 - Itapuã
+13;Capital;Baixa de Quintas;37ª CIPM - Liberdade;BTS;02 - Liberdade
+14;Capital;Barbalho;2ª CIPM - Barbalho;BTS;01 - Barris
+15;Capital;Barra;11ª CIPM - Barra;Atlântico;14 - Barra
+16;Capital;Barreiras;23ª CIPM - Tancredo Neves;Central;11 - Tancredo Neves
+17;Capital;Barris;18º BPM - Centro Histórico;BTS;01 - Barris
+18;Capital;Beiru/Tancredo Neves;23ª CIPM - Tancredo Neves;Central;11 - Tancredo Neves
+19;Capital;Boa Viagem;17ª CIPM - Uruguai;BTS;03 - Bonfim
+20;Capital;Boa Vista de Brotas;26ª CIPM - Brotas;Atlântico;06 - Brotas
+21;Capital;Boa Vista de São Caetano;9ª CIPM - Pirajá;BTS;04 - São Caetano
+22;Capital;Boca da Mata;3ª CIPM - Cajazeiras;Central;13 - Cajazeiras
+23;Capital;Boca do Rio;39ª CIPM - Boca do Rio;Atlântico;09 - Boca do Rio
+24;Capital;Bom Juá;9ª CIPM - Pirajá;BTS;04 - São Caetano
+25;Capital;Bonfim;17ª CIPM - Uruguai;BTS;03 - Bonfim
+26;Capital;Brotas;26ª CIPM - Brotas;Atlântico;06 - Brotas
+27;Capital;Cabula;23ª CIPM - Tancredo Neves;Central;11 - Tancredo Neves
+28;Capital;Cabula VI;23ª CIPM - Tancredo Neves;Central;11 - Tancredo Neves
+29;Capital;Caixa D´Água;37ª CIPM - Liberdade;BTS;02 - Liberdade
+30;Capital;Cajazeiras II;3ª CIPM - Cajazeiras;Central;13 - Cajazeiras
+31;Capital;Cajazeiras IV;3ª CIPM - Cajazeiras;Central;13 - Cajazeiras
+32;Capital;Cajazeiras V;3ª CIPM - Cajazeiras;Central;13 - Cajazeiras
+33;Capital;Cajazeiras VI;3ª CIPM - Cajazeiras;Central;13 - Cajazeiras
+34;Capital;Cajazeiras VII;3ª CIPM - Cajazeiras;Central;13 - Cajazeiras
+35;Capital;Cajazeiras VIII;3ª CIPM - Cajazeiras;Central;13 - Cajazeiras
+36;Capital;Cajazeiras X;3ª CIPM - Cajazeiras;Central;13 - Cajazeiras
+37;Capital;Cajazeiras XI;3ª CIPM - Cajazeiras;Central;13 - Cajazeiras
+38;Capital;Calabar;41ª CIPM - Federação;Atlântico;07 - Rio Vermelho
+39;Capital;Calabetão;48ª CIPM - Sussuarana;Central;11 - Tancredo Neves
+40;Capital;Calçada;16ª CIPM - Comércio;BTS;03 - Bonfim
+41;Capital;Caminho das Árvores;35ª CIPM - Iguatemi;Atlântico;16 - Pituba
+42;Capital;Caminho de Areia;17ª CIPM - Uruguai;BTS;03 - Bonfim
+43;Capital;Campinas de Pirajá;9ª CIPM - Pirajá;BTS;04 - São Caetano
+44;Capital;Canabrava;50ª CIPM - Sete de Abril;Central;10 - Pau da Lima
+45;Capital;Candeal;26ª CIPM - Brotas;Atlântico;06 - Brotas
+46;Capital;Canela;18º BPM - Centro Histórico;BTS;01 - Barris
+47;Capital;Capelinha;9ª CIPM - Pirajá;BTS;04 - São Caetano
+48;Capital;Cassange;49ª CIPM - São Cristóvão;Atlântico;12 - Itapuã
+49;Capital;Castelo Branco;47ª CIPM - Pau da Lima;Central;10 - Pau da Lima
+50;Capital;Centro;18º BPM - Centro Histórico;BTS;01 - Barris
+51;Capital;Centro Administrativo da Bahia;82ª CIPM - CAB;Central;11 - Tancredo Neves
+52;Capital;Centro Histórico;18º BPM - Centro Histórico;BTS;01 - Barris
+53;Capital;Chapada do Rio Vermelho;40ª CIPM - Nordeste de Amaralina;Atlântico;15 - Nordeste de Amaralina
+54;Capital;Cidade Nova;37ª CIPM - Liberdade;BTS;02 - Liberdade
+55;Capital;Comércio;16ª CIPM - Comércio;BTS;03 - Bonfim
+56;Capital;Cosme de Farias;58ª CIPM - Cosme de Farias;Atlântico;06 - Brotas
+57;Capital;Costa Azul;39ª CIPM - Boca do Rio;Atlântico;09 - Boca do Rio
+58;Capital;Coutos;18ª CIPM - Periperi;BTS;05 - Periperi
+59;Capital;Curuzu;37ª CIPM - Liberdade;BTS;02 - Liberdade
+60;Capital;Dom Avelar;47ª CIPM - Pau da Lima;Central;10 - Pau da Lima
+61;Capital;Doron;23ª CIPM - Tancredo Neves;Central;11 - Tancredo Neves
+62;Capital;Engenho Velho da Federação;41ª CIPM - Federação;Atlântico;07 - Rio Vermelho
+63;Capital;Engenho Velho de Brotas;26ª CIPM - Brotas;Atlântico;06 - Brotas
+64;Capital;Engomadeira;23ª CIPM - Tancredo Neves;Central;11 - Tancredo Neves
+65;Capital;Fazenda Coutos;19ª CIPM - Paripe;BTS;05 - Periperi
+66;Capital;Fazenda Grande do Retiro;9ª CIPM - Pirajá;BTS;04 - São Caetano
+67;Capital;Fazenda Grande I;3ª CIPM - Cajazeiras;Central;13 - Cajazeiras
+68;Capital;Fazenda Grande II;3ª CIPM - Cajazeiras;Central;13 - Cajazeiras
+69;Capital;Fazenda Grande III;3ª CIPM - Cajazeiras;Central;13 - Cajazeiras
+70;Capital;Fazenda Grande IV;3ª CIPM - Cajazeiras;Central;13 - Cajazeiras
+71;Capital;Federação;41ª CIPM - Federação;Atlântico;07 - Rio Vermelho
+72;Capital;Garcia;18º BPM - Centro Histórico;BTS;01 - Barris
+73;Capital;Graça;11ª CIPM - Barra;Atlântico;14 - Barra
+74;Capital;Granjas Rurais Presidente Vargas;48ª CIPM - Sussuarana;Central;11 - Tancredo Neves
+75;Capital;IAPI;37ª CIPM - Liberdade;BTS;02 - Liberdade
+77;Capital;Ilha de Maré;19ª CIPM - Paripe;BTS;05 - Periperi
+79;Capital;Imbuí;39ª CIPM - Boca do Rio;Atlântico;09 - Boca do Rio
+80;Capital;Itacaranha;14ª CIPM - Lobato;BTS;05 - Periperi
+81;Capital;Itaigara;35ª CIPM - Iguatemi;Atlântico;16 - Pituba
+82;Capital;Itapuã;15ª CIPM - Itapuã;Atlântico;12 - Itapuã
+84;Capital;Jaguaripe I;3ª CIPM - Cajazeiras;Central;13 - Cajazeiras
+85;Capital;Jardim Armação;39ª CIPM - Boca do Rio;Atlântico;09 - Boca do Rio
+86;Capital;Jardim Cajazeiras;47ª CIPM - Pau da Lima;Central;10 - Pau da Lima
+87;Capital;Jardim das Margaridas;49ª CIPM - São Cristóvão;Atlântico;12 - Itapuã
+88;Capital;Jardim Nova Esperança;50ª CIPM - Sete de Abril;Central;10 - Pau da Lima
+89;Capital;Jardim Santo Inácio;48ª CIPM - Sussuarana;Central;11 - Tancredo Neves
+90;Capital;Lapinha;37ª CIPM - Liberdade;BTS;02 - Liberdade
+91;Capital;Liberdade;37ª CIPM - Liberdade;BTS;02 - Liberdade
+92;Capital;Lobato;14ª CIPM - Lobato;BTS;05 - Periperi
+93;Capital;Luiz Anselmo;58ª CIPM - Cosme de Farias;Atlântico;06 - Brotas
+94;Capital;Macaúbas;2ª CIPM - Barbalho;BTS;01 - Barris
+95;Capital;Mangueira;17ª CIPM - Uruguai;BTS;03 - Bonfim
+96;Capital;Marechal Rondon;9ª CIPM - Pirajá;BTS;04 - São Caetano
+97;Capital;Mares;16ª CIPM - Comércio;BTS;03 - Bonfim
+98;Capital;Massaranduba;17ª CIPM - Uruguai;BTS;03 - Bonfim
+99;Capital;Mata Escura;48ª CIPM - Sussuarana;Central;11 - Tancredo Neves
+100;Capital;Matatu;58ª CIPM - Cosme de Farias;Atlântico;06 - Brotas
+101;Capital;Monte Serrat;17ª CIPM - Uruguai;BTS;03 - Bonfim
+102;Capital;Moradas da Lagoa;31ª CIPM - Valéria;BTS;08 - CIA
+103;Capital;Mussurunga;49ª CIPM - São Cristóvão;Atlântico;12 - Itapuã
+104;Capital;Narandiba;23ª CIPM - Tancredo Neves;Central;11 - Tancredo Neves
+105;Capital;Nazaré;2ª CIPM - Barbalho;BTS;01 - Barris
+106;Capital;Nordeste de Amaralina;40ª CIPM - Nordeste de Amaralina;Atlântico;15 - Nordeste de Amaralina
+107;Capital;Nova Brasília;50ª CIPM - Sete de Abril;Central;10 - Pau da Lima
+108;Capital;Nova Constituinte;18ª CIPM - Periperi;BTS;05 - Periperi
+109;Capital;Nova Esperança;49ª CIPM - São Cristóvão;Atlântico;12 - Itapuã
+110;Capital;Nova Sussuarana;48ª CIPM - Sussuarana;Central;11 - Tancredo Neves
+111;Capital;Novo Horizonte;48ª CIPM - Sussuarana;Central;11 - Tancredo Neves
+112;Capital;Novo Marotinho;50ª CIPM - Sete de Abril;Central;10 - Pau da Lima
+113;Capital;Ondina;12ª CIPM - Rio Vermelho;Atlântico;07 - Rio Vermelho
+114;Capital;Palestina;31ª CIPM - Valéria;BTS;08 - CIA
+115;Capital;Paripe;19ª CIPM - Paripe;BTS;05 - Periperi
+116;Capital;Patamares;15ª CIPM - Itapuã;Atlântico;12 - Itapuã
+117;Capital;Pau da Lima;47ª CIPM - Pau da Lima;Central;10 - Pau da Lima
+118;Capital;Pau Miúdo;37ª CIPM - Liberdade;BTS;02 - Liberdade
+119;Capital;Periperi;18ª CIPM - Periperi;BTS;05 - Periperi
+120;Capital;Pernambués;1ª CIPM - Pernambués;Central;11 - Tancredo Neves
+121;Capital;Pero Vaz;37ª CIPM - Liberdade;BTS;02 - Liberdade
+122;Capital;Piatã;15ª CIPM - Itapuã;Atlântico;12 - Itapuã
+123;Capital;Pirajá;9ª CIPM - Pirajá;BTS;04 - São Caetano
+124;Capital;Pituaçu;39ª CIPM - Boca do Rio;Atlântico;09 - Boca do Rio
+125;Capital;Pituba;13ª CIPM - Pituba;Atlântico;16 - Pituba
+126;Capital;Plataforma;14ª CIPM - Lobato;BTS;05 - Periperi
+127;Capital;Porto Seco Pirajá;47ª CIPM - Pau da Lima;Central;10 - Pau da Lima
+128;Capital;Praia Grande;18ª CIPM - Periperi;BTS;05 - Periperi
+129;Capital;Resgate;23ª CIPM - Tancredo Neves;Central;11 - Tancredo Neves
+130;Capital;Retiro;9ª CIPM - Pirajá;BTS;04 - São Caetano
+131;Capital;Ribeira;17ª CIPM - Uruguai;BTS;03 - Bonfim
+132;Capital;Rio Sena;18ª CIPM - Periperi;BTS;05 - Periperi
+133;Capital;Rio Vermelho;12ª CIPM - Rio Vermelho;Atlântico;07 - Rio Vermelho
+134;Capital;Roma;17ª CIPM - Uruguai;BTS;03 - Bonfim
+135;Capital;Saboeiro;23ª CIPM - Tancredo Neves;Central;11 - Tancredo Neves
+136;Capital;Santa Cruz;40ª CIPM - Nordeste de Amaralina;Atlântico;15 - Nordeste de Amaralina
+137;Capital;Santa Luzia;16ª CIPM - Comércio;BTS;03 - Bonfim
+138;Capital;Santa Mônica;37ª CIPM - Liberdade;BTS;02 - Liberdade
+139;Capital;Santo Agostinho;58ª CIPM - Cosme de Farias;Atlântico;06 - Brotas
+140;Capital;Santo Antônio;18º BPM - Centro Histórico;BTS;01 - Barris
+141;Capital;São Caetano;9ª CIPM - Pirajá;BTS;04 - São Caetano
+142;Capital;São Cristóvão;49ª CIPM - São Cristóvão;Atlântico;12 - Itapuã
+143;Capital;São Gonçalo;23ª CIPM - Tancredo Neves;Central;11 - Tancredo Neves
+144;Capital;São João do Cabrito;14ª CIPM - Lobato;BTS;05 - Periperi
+145;Capital;São Marcos;47ª CIPM - Pau da Lima;Central;10 - Pau da Lima
+146;Capital;São Rafael;50ª CIPM - Sete de Abril;Central;10 - Pau da Lima
+147;Capital;São Tomé;19ª CIPM - Paripe;BTS;05 - Periperi
+148;Capital;Saramandaia;1ª CIPM - Pernambués;Central;11 - Tancredo Neves
+149;Capital;Saúde;2ª CIPM - Barbalho;BTS;01 - Barris
+150;Capital;Sete de Abril;50ª CIPM - Sete de Abril;Central;10 - Pau da Lima
+151;Capital;Stella Maris;15ª CIPM - Itapuã;Atlântico;12 - Itapuã
+152;Capital;STIEP;39ª CIPM - Boca do Rio;Atlântico;09 - Boca do Rio
+153;Capital;Sussuarana;48ª CIPM - Sussuarana;Central;11 - Tancredo Neves
+154;Capital;Tororó;2ª CIPM - Barbalho;BTS;01 - Barris
+155;Capital;Trobogy;50ª CIPM - Sete de Abril;Central;10 - Pau da Lima
+156;Capital;Uruguai;17ª CIPM - Uruguai;BTS;03 - Bonfim
+157;Capital;Vale das Pedrinhas;40ª CIPM - Nordeste de Amaralina;Atlântico;15 - Nordeste de Amaralina
+158;Capital;Vale dos Lagos;50ª CIPM - Sete de Abril;Central;10 - Pau da Lima
+159;Capital;Valéria;31ª CIPM - Valéria;BTS;08 - CIA
+160;Capital;Vila Canária;47ª CIPM - Pau da Lima;Central;10 - Pau da Lima
+161;Capital;Vila Laura;58ª CIPM - Cosme de Farias;Atlântico;06 - Brotas
+162;Capital;Vila Ruy Barbosa/Jardim Cruzeiro;17ª CIPM - Uruguai;BTS;03 - Bonfim
+163;Capital;Vitória;11ª CIPM - Barra;Atlântico;14 - Barra
+11058;Capital;Paralela Trecho Bairro da Paz;82ª CIPM - CAB;Central;11 - Tancredo Neves
+11059;Capital;Paralela Trecho Cabula;82ª CIPM - CAB;Central;11 - Tancredo Neves
+11060;Capital;Paralela Trecho Canabrava;82ª CIPM - CAB;Central;11 - Tancredo Neves
+11061;Capital;Paralela Trecho Centro Administrativo da Bahia;82ª CIPM - CAB;Central;11 - Tancredo Neves
+11062;Capital;Paralela Trecho Imbuí;82ª CIPM - CAB;Central;11 - Tancredo Neves
+11063;Capital;Paralela Trecho Itapuã;82ª CIPM - CAB;Central;11 - Tancredo Neves
+11064;Capital;Paralela Trecho Mussurunga;82ª CIPM - CAB;Central;11 - Tancredo Neves
+11065;Capital;Paralela Trecho Narandiba;82ª CIPM - CAB;Central;11 - Tancredo Neves
+11066;Capital;Paralela Trecho Patamares;82ª CIPM - CAB;Central;11 - Tancredo Neves
+11067;Capital;Paralela Trecho Piatã;82ª CIPM - CAB;Central;11 - Tancredo Neves
+11068;Capital;Paralela Trecho Pituaçu;82ª CIPM - CAB;Central;11 - Tancredo Neves
+11069;Capital;Paralela Trecho Saboeiro;82ª CIPM - CAB;Central;11 - Tancredo Neves
+11070;Capital;Paralela Trecho São Cristóvão;82ª CIPM - CAB;Central;11 - Tancredo Neves
+11071;Capital;Paralela Trecho São Rafael;82ª CIPM - CAB;Central;11 - Tancredo Neves
+11072;Capital;Paralela Trecho Trobogy;82ª CIPM - CAB;Central;11 - Tancredo Neves
+11073;Capital;Paralela Trecho Vale dos Lagos;82ª CIPM - CAB;Central;11 - Tancredo Neves
+30353;Capital;Dois de Julho;18º BPM - Centro Histórico;BTS;01 - Barris
+30354;Capital;Ilha Amarela;14ª CIPM - Lobato;BTS;05 - Periperi
+30355;Capital;Horto Florestal;26ª CIPM - Brotas;Atlântico;06 - Brotas
+30356;Capital;Vista Alegre;18ª CIPM - Periperi;BTS;05 - Periperi
+30357;Capital;Colinas de Periperi;18ª CIPM - Periperi;BTS;05 - Periperi
+30358;Capital;Mirantes de Periperi;18ª CIPM - Periperi;BTS;05 - Periperi
+30359;Capital;Chame-Chame;12ª CIPM - Rio Vermelho;Atlântico;07 - Rio Vermelho
+30360;Capital;Paralela Trecho Stiep;82ª CIPM - CAB;Central;11 - Tancredo Neves
+30361;Capital;Paralela Trecho Pernambués;82ª CIPM - CAB;Central;11 - Tancredo Neves
+290010;Interior;Abaíra;29ª CIPM - Seabra;Chapada;Chapada Diamantina
+290020;Interior;Abaré;20º BPM - Paulo Afonso;Nordeste;Itaparica
+290030;Interior;Acajutiba;6ª CIPM - Rio Real;Leste;Litoral Norte Agreste Baiano
+290035;Interior;Adustina;21ª CIPM - Cipó;Nordeste;Semiárido
+290040;Interior;Água Fria;97ª CIPM - Irará;Leste;Portal do Sertão
+290050;Interior;Érico Cardoso;4ª CIPM - Macaúbas;Meio-Oeste;Bacia do Paramirim
+290060;Interior;Aiquara;55ª CIPM - Ipiaú;Sudoeste;Médio Rio de Contas
+290070;Interior;Alagoinhas;4º BPM - Alagoinhas;Leste;Litoral Norte Agreste Baiano
+290080;Interior;Alcobaça;88ª CIPM - Alcobaça;Extremo Sul;Extremo Sul
+290090;Interior;Almadina;15º BPM - Itabuna;Sul;Litoral Sul
+290100;Interior;Amargosa;99ª CIPM - Amargosa;Recôncavo;Vale do Jiquiriçá
+290110;Interior;Amélia Rodrigues;97ª CIPM - Irará;Leste;Portal do Sertão
+290115;Interior;América Dourada;7º BPM - Irecê;Meio-Oeste;Irecê
+290120;Interior;Anagé;79ª CIPM - Poções;Sudoeste;Sudoeste Baiano
+290130;Interior;Andaraí;42ª CIPM - Lençóis;Chapada;Chapada Diamantina
+290135;Interior;Andorinha;6º BPM - Senhor do Bonfim;Norte;Piemonte Norte do Itapicuru
+290140;Interior;Angical;84ª CIPM - Barreiras;Oeste;Bacia do Rio Grande
+290150;Interior;Anguera;57ª CIPM - Santo Estevão;Leste;Portal do Sertão
+290160;Interior;Antas;5º BPM - Euclides da Cunha;Nordeste;Semiárido
+290170;Interior;Antônio Cardoso;57ª CIPM - Santo Estevão;Leste;Portal do Sertão
+290180;Interior;Antônio Gonçalves;54ª CIPM - Campo Formoso;Norte;Piemonte Norte do Itapicuru
+290190;Interior;Aporá;6ª CIPM - Rio Real;Leste;Litoral Norte Agreste Baiano
+290195;Interior;Apuarema;19º BPM - Jequié;Sudoeste;Médio Rio de Contas
+290200;Interior;Aracatu;79ª CIPM - Poções;Sudoeste;Sudoeste Baiano
+290205;Interior;Araçás;4º BPM - Alagoinhas;Leste;Litoral Norte Agreste Baiano
+290210;Interior;Araci;16º BPM - Serrinha;Nordeste;Sisal
+290220;Interior;Aramari;4º BPM - Alagoinhas;Leste;Litoral Norte Agreste Baiano
+290225;Interior;Arataca;62ª CIPM - Camacan;Sul;Litoral Sul
+290230;Interior;Aratuípe;14º BPM - Santo Antônio de Jesus;Recôncavo;Recôncavo
+290240;Interior;Aurelino Leal;61ª CIPM - Ubaitaba;Sul;Litoral Sul
+290250;Interior;Baianópolis;83ª CIPM - Barreiras;Oeste;Bacia do Rio Grande
+290260;Interior;Baixa Grande;98ª CIPM - Ipirá;Chapada;Bacia do Jacuípe
+290265;Interior;Banzaê;5º BPM - Euclides da Cunha;Nordeste;Semiárido
+290270;Interior;Barra;28ª CIPM - Ibotirama;Meio-Oeste;Velho Chico
+290280;Interior;Barra Da Estiva;24º BPM - Brumado;Sudoeste;Sertão Produtivo
+290290;Interior;Barra Do Choça;92ª CIPM - Vitória da Conquista;Sudoeste;Sudoeste Baiano
+290300;Interior;Barra Do Mendes;7º BPM - Irecê;Meio-Oeste;Irecê
+290310;Interior;Barra Do Rocha;55ª CIPM - Ipiaú;Sudoeste;Médio Rio de Contas
+290320;Interior;Barreiras;83ª CIPM e 84ª CIPM - Barreiras;Oeste;Bacia do Rio Grande
+290323;Interior;Barro Alto;7º BPM - Irecê;Meio-Oeste;Irecê
+290327;Interior;Barrocas;16º BPM - Serrinha;Nordeste;Sisal
+290330;Interior;Barro Preto;15º BPM - Itabuna;Sul;Litoral Sul
+290340;Interior;Belmonte;8º BPM - Porto Seguro;Extremo Sul;Costa do Descobrimento
+290350;Interior;Belo Campo;80ª CIPM - Cândido Sales;Sudoeste;Sudoeste Baiano
+290360;Interior;Biritinga;16º BPM - Serrinha;Nordeste;Sisal
+290370;Interior;Boa Nova;55ª CIPM - Ipiaú;Sudoeste;Médio Rio de Contas
+290380;Interior;Boa Vista Do Tupim;11º BPM - Itaberaba;Chapada;Piemonte do Paraguaçu
+290390;Interior;Bom Jesus Da Lapa;38ª CIPM - Bom Jesus da Lapa;Meio-Oeste;Velho Chico
+290395;Interior;Bom Jesus Da Serra;79ª CIPM - Poções;Sudoeste;Sudoeste Baiano
+290400;Interior;Boninal;29ª CIPM - Seabra;Chapada;Chapada Diamantina
+290405;Interior;Bonito;7º BPM - Irecê;Meio-Oeste;Irecê
+290410;Interior;Boquira;4ª CIPM - Macaúbas;Meio-Oeste;Bacia do Paramirim
+290420;Interior;Botuporã;4ª CIPM - Macaúbas;Meio-Oeste;Bacia do Paramirim
+290430;Interior;Brejões;99ª CIPM - Amargosa;Recôncavo;Vale do Jiquiriçá
+290440;Interior;Brejolândia;30ª CIPM - Santa Maria da Vitória;Oeste;Bacia do Rio Corrente
+290450;Interior;Brotas De Macaúbas;28ª CIPM - Ibotirama;Meio-Oeste;Velho Chico
+290460;Interior;Brumado;24º BPM - Brumado;Sudoeste;Sertão Produtivo
+290470;Interior;Buerarema;15º BPM - Itabuna;Sul;Litoral Sul
+290475;Interior;Buritirama;86ª CIPM - Formosa do Rio Preto;Oeste;Bacia do Rio Grande
+290480;Interior;Caatiba;8ª CIPM - Itapetinga;Sul;Médio Sudoeste da Bahia
+290485;Interior;Cabaceiras Do Paraguaçu;27ª CIPM - Cruz das Almas;Recôncavo;Recôncavo
+290490;Interior;Cachoeira;20ª CIPM - Santo Amaro;Recôncavo;Recôncavo
+290500;Interior;Caculé;94ª CIPM - Caetité;Sudoeste;Sertão Produtivo
+290510;Interior;Caém;24ª CIPM - Jacobina;Chapada;Piemonte da Diamantina
+290515;Interior;Caetanos;79ª CIPM - Poções;Sudoeste;Sudoeste Baiano
+290520;Interior;Caetité;94ª CIPM - Caetité;Sudoeste;Sertão Produtivo
+290530;Interior;Cafarnaum;7º BPM - Irecê;Meio-Oeste;Irecê
+290540;Interior;Cairu;33ª CIPM - Valença;Recôncavo;Baixo Sul
+290550;Interior;Caldeirão Grande;6º BPM - Senhor do Bonfim;Norte;Piemonte Norte do Itapicuru
+290560;Interior;Camacan;62ª CIPM - Camacan;Sul;Litoral Sul
+290570;RMS;Camaçari;12º BPM - Camaçari;RMS;22 - Camaçari
+290580;Interior;Camamu;33ª CIPM - Valença;Recôncavo;Baixo Sul
+290590;Interior;Campo Alegre De Lourdes;25ª CIPM - Casa Nova;Norte;Sertão do São Francisco
+290600;Interior;Campo Formoso;54ª CIPM - Campo Formoso;Norte;Piemonte Norte do Itapicuru
+290610;Interior;Canápolis;30ª CIPM - Santa Maria da Vitória;Oeste;Bacia do Rio Corrente
+290620;Interior;Canarana;7º BPM - Irecê;Meio-Oeste;Irecê
+290630;Interior;Canavieiras;71ª CIPM - Canavieiras;Sul;Litoral Sul
+290640;Interior;Candeal;16º BPM - Serrinha;Nordeste;Sisal
+290650;RMS;Candeias;10ª CIPM - Candeias;RMS;26 - Candeias
+290660;Interior;Candiba;17º BPM - Guanambi;Sudoeste;Sertão Produtivo
+290670;Interior;Cândido Sales;80ª CIPM - Cândido Sales;Sudoeste;Sudoeste Baiano
+290680;Interior;Cansanção;16º BPM - Serrinha;Nordeste;Sisal
+290682;Interior;Canudos;45ª CIPM - Curaçá;Norte;Sertão do São Francisco
+290685;Interior;Capela Do Alto Alegre;90ª CIPM - Riachão do Jacuípe;Chapada;Bacia do Jacuípe
+290687;Interior;Capim Grosso;91ª CIPM - Capim Grosso;Chapada;Bacia do Jacuípe
+290689;Interior;Caraíbas;79ª CIPM - Poções;Sudoeste;Sudoeste Baiano
+290690;Interior;Caravelas;88ª CIPM - Alcobaça;Extremo Sul;Extremo Sul
+290700;Interior;Cardeal Da Silva;56ª CIPM - Entre Rios;Leste;Litoral Norte Agreste Baiano
+290710;Interior;Carinhanha;38ª CIPM - Bom Jesus da Lapa;Meio-Oeste;Velho Chico
+290720;Interior;Casa Nova;25ª CIPM - Casa Nova;Norte;Sertão do São Francisco
+290730;Interior;Castro Alves;27ª CIPM - Cruz das Almas;Recôncavo;Recôncavo
+290740;Interior;Catolândia;83ª CIPM - Barreiras;Oeste;Bacia do Rio Grande
+290750;Interior;Catu;95ª CIPM - Catu;Leste;Litoral Norte Agreste Baiano
+290755;Interior;Caturama;4ª CIPM - Macaúbas;Meio-Oeste;Bacia do Paramirim
+290760;Interior;Central;7º BPM - Irecê;Meio-Oeste;Irecê
+290770;Interior;Chorrochó;20º BPM - Paulo Afonso;Nordeste;Itaparica
+290780;Interior;Cícero Dantas;5º BPM - Euclides da Cunha;Nordeste;Semiárido
+290790;Interior;Cipó;21ª CIPM - Cipó;Nordeste;Semiárido
+290800;Interior;Coaraci;15º BPM - Itabuna;Sul;Litoral Sul
+290810;Interior;Cocos;30ª CIPM - Santa Maria da Vitória;Oeste;Bacia do Rio Corrente
+290820;Interior;Conceição Da Feira;67ª CIPM - Feira de Santana;Leste;Portal do Sertão
+290830;Interior;Conceição Do Almeida;27ª CIPM - Cruz das Almas;Recôncavo;Recôncavo
+290840;Interior;Conceição Do Coité;16º BPM - Serrinha;Nordeste;Sisal
+290850;Interior;Conceição Do Jacuípe;97ª CIPM - Irará;Leste;Portal do Sertão
+290860;Interior;Conde;51ª CIPM - Conde;Leste;Litoral Norte Agreste Baiano
+290870;Interior;Condeúba;80ª CIPM - Cândido Sales;Sudoeste;Sudoeste Baiano
+290880;Interior;Contendas Do Sincorá;24º BPM - Brumado;Sudoeste;Sertão Produtivo
+290890;Interior;Coração De Maria;97ª CIPM - Irará;Leste;Portal do Sertão
+290900;Interior;Cordeiros;80ª CIPM - Cândido Sales;Sudoeste;Sudoeste Baiano
+290910;Interior;Coribe;30ª CIPM - Santa Maria da Vitória;Oeste;Bacia do Rio Corrente
+290920;Interior;Coronel João Sá;20º BPM - Paulo Afonso;Nordeste;Itaparica
+290930;Interior;Correntina;30ª CIPM - Santa Maria da Vitória;Oeste;Bacia do Rio Corrente
+290940;Interior;Cotegipe;84ª CIPM - Barreiras;Oeste;Bacia do Rio Grande
+290950;Interior;Cravolândia;19º BPM - Jequié;Sudoeste;Médio Rio de Contas
+290960;Interior;Crisópolis;6ª CIPM - Rio Real;Leste;Litoral Norte Agreste Baiano
+290970;Interior;Cristópolis;83ª CIPM - Barreiras;Oeste;Bacia do Rio Grande
+290980;Interior;Cruz Das Almas;27ª CIPM - Cruz das Almas;Recôncavo;Recôncavo
+290990;Interior;Curaçá;45ª CIPM - Curaçá;Norte;Sertão do São Francisco
+291000;Interior;Dário Meira;55ª CIPM - Ipiaú;Sudoeste;Médio Rio de Contas
+291005;RMS;Dias D'Ávila;36ª CIPM - Dias D'Ávila;RMS;28 - Dias D’Ávila
+291010;Interior;Dom Basílio;46ª CIPM - Livramento de Nossa Senhora;Sudoeste;Sertão Produtivo
+291020;Interior;Dom Macêdo Costa;14º BPM - Santo Antônio de Jesus;Recôncavo;Recôncavo
+291030;Interior;Elísio Medrado;99ª CIPM - Amargosa;Recôncavo;Vale do Jiquiriçá
+291040;Interior;Encruzilhada;80ª CIPM - Cândido Sales;Sudoeste;Sudoeste Baiano
+291050;Interior;Entre Rios;56ª CIPM - Entre Rios;Leste;Litoral Norte Agreste Baiano
+291060;Interior;Esplanada;56ª CIPM - Entre Rios;Leste;Litoral Norte Agreste Baiano
+291070;Interior;Euclides Da Cunha;5º BPM - Euclides da Cunha;Nordeste;Semiárido
+291072;Interior;Eunápolis;7ª CIPM - Eunápolis;Extremo Sul;Costa do Descobrimento
+291075;Interior;Fátima;21ª CIPM - Cipó;Nordeste;Semiárido
+291077;Interior;Feira Da Mata;38ª CIPM - Bom Jesus da Lapa;Meio-Oeste;Velho Chico
+291080;Interior;Feira De Santana;64ª CIPM, 65ª CIPM, 66ª CIPM e 67ª CIPM - Feira de Santana;Leste;Portal do Sertão
+291085;Interior;Filadélfia;6º BPM - Senhor do Bonfim;Norte;Piemonte Norte do Itapicuru
+291090;Interior;Firmino Alves;8ª CIPM - Itapetinga;Sul;Médio Sudoeste da Bahia
+291100;Interior;Floresta Azul;63ª CIPM - Ibicaraí;Sul;Litoral Sul
+291110;Interior;Formosa Do Rio Preto;86ª CIPM - Formosa do Rio Preto;Oeste;Bacia do Rio Grande
+291120;Interior;Gandú;60ª CIPM - Gandu;Recôncavo;Baixo Sul
+291125;Interior;Gavião;91ª CIPM - Capim Grosso;Chapada;Bacia do Jacuípe
+291130;Interior;Gentio Do Ouro;7º BPM - Irecê;Meio-Oeste;Irecê
+291140;Interior;Glória;20º BPM - Paulo Afonso;Nordeste;Itaparica
+291150;Interior;Gongogi;55ª CIPM - Ipiaú;Sudoeste;Médio Rio de Contas
+291160;Interior;Governador Mangabeira;27ª CIPM - Cruz das Almas;Recôncavo;Recôncavo
+291165;Interior;Guajeru;79ª CIPM - Poções;Sudoeste;Sudoeste Baiano
+291170;Interior;Guanambi;17º BPM - Guanambi;Sudoeste;Sertão Produtivo
+291180;Interior;Guaratinga;7ª CIPM - Eunápolis;Extremo Sul;Costa do Descobrimento
+291185;Interior;Heliópolis;21ª CIPM - Cipó;Nordeste;Semiárido
+291190;Interior;Iaçu;11º BPM - Itaberaba;Chapada;Piemonte do Paraguaçu
+291200;Interior;Ibiassucê;94ª CIPM - Caetité;Sudoeste;Sertão Produtivo
+291210;Interior;Ibicaraí;63ª CIPM - Ibicaraí;Sul;Litoral Sul
+291220;Interior;Ibicoara;42ª CIPM - Lençóis;Chapada;Chapada Diamantina
+291230;Interior;Ibicuí;8ª CIPM - Itapetinga;Sul;Médio Sudoeste da Bahia
+291240;Interior;Ibipeba;7º BPM - Irecê;Meio-Oeste;Irecê
+291250;Interior;Ibipitanga;4ª CIPM - Macaúbas;Meio-Oeste;Bacia do Paramirim
+291260;Interior;Ibiquera;11º BPM - Itaberaba;Chapada;Piemonte do Paraguaçu
+291270;Interior;Ibirapitanga;60ª CIPM - Gandu;Recôncavo;Baixo Sul
+291280;Interior;Ibirapuã;44ª CIPM - Medeiros Neto;Extremo Sul;Extremo Sul
+291290;Interior;Ibirataia;55ª CIPM - Ipiaú;Sudoeste;Médio Rio de Contas
+291300;Interior;Ibitiara;29ª CIPM - Seabra;Chapada;Chapada Diamantina
+291310;Interior;Ibititá;7º BPM - Irecê;Meio-Oeste;Irecê
+291320;Interior;Ibotirama;28ª CIPM - Ibotirama;Meio-Oeste;Velho Chico
+291330;Interior;Ichu;16º BPM - Serrinha;Nordeste;Sisal
+291340;Interior;Igaporã;38ª CIPM - Bom Jesus da Lapa;Meio-Oeste;Velho Chico
+291345;Interior;Igrapiúna;33ª CIPM - Valença;Recôncavo;Baixo Sul
+291350;Interior;Iguaí;8ª CIPM - Itapetinga;Sul;Médio Sudoeste da Bahia
+291360;Interior;Ilhéus;68ª CIPM, 69ª CIPM e 70ª CIPM - Ilhéus;Sul;Litoral Sul
+291370;Interior;Inhambupe;4º BPM - Alagoinhas;Leste;Litoral Norte Agreste Baiano
+291380;Interior;Ipecaetá;57ª CIPM - Santo Estevão;Leste;Portal do Sertão
+291390;Interior;Ipiaú;55ª CIPM - Ipiaú;Sudoeste;Médio Rio de Contas
+291400;Interior;Ipirá;98ª CIPM - Ipirá;Chapada;Bacia do Jacuípe
+291410;Interior;Ipupiara;7º BPM - Irecê;Meio-Oeste;Irecê
+291420;Interior;Irajuba;93ª CIPM - Maracás;Recôncavo;Vale do Jiquiriçá
+291430;Interior;Iramaia;42ª CIPM - Lençóis;Chapada;Chapada Diamantina
+291440;Interior;Iraquara;29ª CIPM - Seabra;Chapada;Chapada Diamantina
+291450;Interior;Irará;97ª CIPM - Irará;Leste;Portal do Sertão
+291460;Interior;Irecê;7º BPM - Irecê;Meio-Oeste;Irecê
+291465;Interior;Itabela;7ª CIPM - Eunápolis;Extremo Sul;Costa do Descobrimento
+291470;Interior;Itaberaba;11º BPM - Itaberaba;Chapada;Piemonte do Paraguaçu
+291480;Interior;Itabuna;15º BPM - Itabuna;Sul;Litoral Sul
+291490;Interior;Itacaré;72ª CIPM - Itacaré;Sul;Litoral Sul
+291500;Interior;Itaeté;42ª CIPM - Lençóis;Chapada;Chapada Diamantina
+291510;Interior;Itagi;19º BPM - Jequié;Sudoeste;Médio Rio de Contas
+291520;Interior;Itagibá;55ª CIPM - Ipiaú;Sudoeste;Médio Rio de Contas
+291530;Interior;Itagimirim;7ª CIPM - Eunápolis;Extremo Sul;Costa do Descobrimento
+291535;Interior;Itaguaçu Da Bahia;7º BPM - Irecê;Meio-Oeste;Irecê
+291540;Interior;Itaju Do Colônia;63ª CIPM - Ibicaraí;Sul;Litoral Sul
+291550;Interior;Itajuípe;15º BPM - Itabuna;Sul;Litoral Sul
+291560;Interior;Itamaraju;43ª CIPM - Itamaraju;Extremo Sul;Extremo Sul
+291570;Interior;Itamari;19º BPM - Jequié;Sudoeste;Médio Rio de Contas
+291580;Interior;Itambé;8ª CIPM - Itapetinga;Sul;Médio Sudoeste da Bahia
+291590;Interior;Itanagra;4º BPM - Alagoinhas;Leste;Litoral Norte Agreste Baiano
+291600;Interior;Itanhém;44ª CIPM - Medeiros Neto;Extremo Sul;Extremo Sul
+291610;RMS;Itaparica;23º BPM - Vera Cruz;Recôncavo;Recôncavo
+291620;Interior;Itapé;63ª CIPM - Ibicaraí;Sul;Litoral Sul
+291630;Interior;Itapebi;7ª CIPM - Eunápolis;Extremo Sul;Costa do Descobrimento
+291640;Interior;Itapetinga;8ª CIPM - Itapetinga;Sul;Médio Sudoeste da Bahia
+291650;Interior;Itapicuru;6ª CIPM - Rio Real;Leste;Litoral Norte Agreste Baiano
+291660;Interior;Itapitanga;61ª CIPM - Ubaitaba;Sul;Litoral Sul
+291670;Interior;Itaquara;19º BPM - Jequié;Sudoeste;Médio Rio de Contas
+291680;Interior;Itarantim;8ª CIPM - Itapetinga;Sul;Médio Sudoeste da Bahia
+291685;Interior;Itatim;11º BPM - Itaberaba;Chapada;Piemonte do Paraguaçu
+291690;Interior;Itiruçu;93ª CIPM - Maracás;Recôncavo;Vale do Jiquiriçá
+291700;Interior;Itiúba;16º BPM - Serrinha;Nordeste;Sisal
+291710;Interior;Itororó;8ª CIPM - Itapetinga;Sul;Médio Sudoeste da Bahia
+291720;Interior;Ituaçu;24º BPM - Brumado;Sudoeste;Sertão Produtivo
+291730;Interior;Ituberá;33ª CIPM - Valença;Recôncavo;Baixo Sul
+291733;Interior;Iuiú;17º BPM - Guanambi;Sudoeste;Sertão Produtivo
+291735;Interior;Jaborandi;30ª CIPM - Santa Maria da Vitória;Oeste;Bacia do Rio Corrente
+291740;Interior;Jacaraci;94ª CIPM - Caetité;Sudoeste;Sertão Produtivo
+291750;Interior;Jacobina;24ª CIPM - Jacobina;Chapada;Piemonte da Diamantina
+291760;Interior;Jaguaquara;19º BPM - Jequié;Sudoeste;Médio Rio de Contas
+291770;Interior;Jaguarari;6º BPM - Senhor do Bonfim;Norte;Piemonte Norte do Itapicuru
+291780;Interior;Jaguaripe;33ª CIPM - Valença;Recôncavo;Baixo Sul
+291790;Interior;Jandaíra;6ª CIPM - Rio Real;Leste;Litoral Norte Agreste Baiano
+291800;Interior;Jequié;19º BPM - Jequié;Sudoeste;Médio Rio de Contas
+291810;Interior;Jeremoabo;20º BPM - Paulo Afonso;Nordeste;Itaparica
+291820;Interior;Jiquiriçá;99ª CIPM - Amargosa;Recôncavo;Vale do Jiquiriçá
+291830;Interior;Jitaúna;19º BPM - Jequié;Sudoeste;Médio Rio de Contas
+291835;Interior;João Dourado;7º BPM - Irecê;Meio-Oeste;Irecê
+291840;Interior;Juazeiro;73ª CIPM, 74ª CIPM, 75ª CIPM e 76ª CIPM - Juazeiro;Norte;Sertão do São Francisco
+291845;Interior;Jucuruçu;43ª CIPM - Itamaraju;Extremo Sul;Extremo Sul
+291850;Interior;Jussara;7º BPM - Irecê;Meio-Oeste;Irecê
+291855;Interior;Jussari;62ª CIPM - Camacan;Sul;Litoral Sul
+291860;Interior;Jussiape;29ª CIPM - Seabra;Chapada;Chapada Diamantina
+291870;Interior;Lafaiete Coutinho;93ª CIPM - Maracás;Recôncavo;Vale do Jiquiriçá
+291875;Interior;Lagoa Real;94ª CIPM - Caetité;Sudoeste;Sertão Produtivo
+291880;Interior;Laje;14º BPM - Santo Antônio de Jesus;Recôncavo;Recôncavo
+291890;Interior;Lajedão;44ª CIPM - Medeiros Neto;Extremo Sul;Extremo Sul
+291900;Interior;Lajedinho;11º BPM - Itaberaba;Chapada;Piemonte do Paraguaçu
+291905;Interior;Lajedo Do Tabocal;93ª CIPM - Maracás;Recôncavo;Vale do Jiquiriçá
+291910;Interior;Lamarão;16º BPM - Serrinha;Nordeste;Sisal
+291915;Interior;Lapão;7º BPM - Irecê;Meio-Oeste;Irecê
+291920;RMS;Lauro De Freitas;52ª CIPM - Lauro de Freitas;RMS;23 - Lauro de Freitas
+291930;Interior;Lençóis;42ª CIPM - Lençóis;Chapada;Chapada Diamantina
+291940;Interior;Licínio De Almeida;94ª CIPM - Caetité;Sudoeste;Sertão Produtivo
+291950;Interior;Livramento De Nossa Senhora;46ª CIPM - Livramento de Nossa Senhora;Sudoeste;Sertão Produtivo
+291955;Interior;Luís Eduardo Magalhães;85ª CIPM - Luís Eduardo;Oeste;Bacia do Rio Grande
+291960;Interior;Macajuba;11º BPM - Itaberaba;Chapada;Piemonte do Paraguaçu
+291970;Interior;Macarani;8ª CIPM - Itapetinga;Sul;Médio Sudoeste da Bahia
+291980;Interior;Macaúbas;4ª CIPM - Macaúbas;Meio-Oeste;Bacia do Paramirim
+291990;Interior;Macururé;20º BPM - Paulo Afonso;Nordeste;Itaparica
+291992;RMS;Madre De Deus;10ª CIPM - Candeias;RMS;26 - Candeias
+291995;Interior;Maetinga;79ª CIPM - Poções;Sudoeste;Sudoeste Baiano
+292000;Interior;Maiquinique;8ª CIPM - Itapetinga;Sul;Médio Sudoeste da Bahia
+292010;Interior;Mairi;91ª CIPM - Capim Grosso;Chapada;Bacia do Jacuípe
+292020;Interior;Malhada;38ª CIPM - Bom Jesus da Lapa;Meio-Oeste;Velho Chico
+292030;Interior;Malhada De Pedras;24º BPM - Brumado;Sudoeste;Sertão Produtivo
+292040;Interior;Manoel Vitorino;19º BPM - Jequié;Sudoeste;Médio Rio de Contas
+292045;Interior;Mansidão;86ª CIPM - Formosa do Rio Preto;Oeste;Bacia do Rio Grande
+292050;Interior;Maracás;93ª CIPM - Maracás;Recôncavo;Vale do Jiquiriçá
+292060;Interior;Maragogipe;20ª CIPM - Santo Amaro;Recôncavo;Recôncavo
+292070;Interior;Maraú;72ª CIPM - Itacaré;Sul;Litoral Sul
+292080;Interior;Marcionílio Souza;42ª CIPM - Lençóis;Chapada;Chapada Diamantina
+292090;Interior;Mascote;62ª CIPM - Camacan;Sul;Litoral Sul
+292100;RMS;Mata De São João;53ª CIPM - Mata de São João;RMS;25 - Pojuca
+292105;Interior;Matina;38ª CIPM - Bom Jesus da Lapa;Meio-Oeste;Velho Chico
+292110;Interior;Medeiros Neto;44ª CIPM - Medeiros Neto;Extremo Sul;Extremo Sul
+292120;Interior;Miguel Calmon;24ª CIPM - Jacobina;Chapada;Piemonte da Diamantina
+292130;Interior;Milagres;99ª CIPM - Amargosa;Recôncavo;Vale do Jiquiriçá
+292140;Interior;Mirangaba;24ª CIPM - Jacobina;Chapada;Piemonte da Diamantina
+292145;Interior;Mirante;79ª CIPM - Poções;Sudoeste;Sudoeste Baiano
+292150;Interior;Monte Santo;5º BPM - Euclides da Cunha;Nordeste;Semiárido
+292160;Interior;Morpará;28ª CIPM - Ibotirama;Meio-Oeste;Velho Chico
+292170;Interior;Morro Do Chapéu;7º BPM - Irecê;Meio-Oeste;Irecê
+292180;Interior;Mortugaba;80ª CIPM - Cândido Sales;Sudoeste;Sudoeste Baiano
+292190;Interior;Mucugê;42ª CIPM - Lençóis;Chapada;Chapada Diamantina
+292200;Interior;Mucuri;89ª CIPM - Mucuri;Extremo Sul;Extremo Sul
+292205;Interior;Mulungu Do Morro;7º BPM - Irecê;Meio-Oeste;Irecê
+292210;Interior;Mundo Novo;11º BPM - Itaberaba;Chapada;Piemonte do Paraguaçu
+292220;Interior;Muniz Ferreira;14º BPM - Santo Antônio de Jesus;Recôncavo;Recôncavo
+292225;Interior;Muquém Do São Francisco;28ª CIPM - Ibotirama;Meio-Oeste;Velho Chico
+292230;Interior;Muritiba;27ª CIPM - Cruz das Almas;Recôncavo;Recôncavo
+292240;Interior;Mutuípe;14º BPM - Santo Antônio de Jesus;Recôncavo;Recôncavo
+292250;Interior;Nazaré;14º BPM - Santo Antônio de Jesus;Recôncavo;Recôncavo
+292260;Interior;Nilo Peçanha;33ª CIPM - Valença;Recôncavo;Baixo Sul
+292265;Interior;Nordestina;16º BPM - Serrinha;Nordeste;Sisal
+292270;Interior;Nova Canaã;8ª CIPM - Itapetinga;Sul;Médio Sudoeste da Bahia
+292273;Interior;Nova Fátima;90ª CIPM - Riachão do Jacuípe;Chapada;Bacia do Jacuípe
+292275;Interior;Nova Ibiá;19º BPM - Jequié;Sudoeste;Médio Rio de Contas
+292280;Interior;Nova Itarana;93ª CIPM - Maracás;Recôncavo;Vale do Jiquiriçá
+292285;Interior;Nova Redenção;42ª CIPM - Lençóis;Chapada;Chapada Diamantina
+292290;Interior;Nova Soure;21ª CIPM - Cipó;Nordeste;Semiárido
+292300;Interior;Nova Viçosa;89ª CIPM - Mucuri;Extremo Sul;Extremo Sul
+292303;Interior;Novo Horizonte;29ª CIPM - Seabra;Chapada;Chapada Diamantina
+292305;Interior;Novo Triunfo;5º BPM - Euclides da Cunha;Nordeste;Semiárido
+292310;Interior;Olindina;6ª CIPM - Rio Real;Leste;Litoral Norte Agreste Baiano
+292320;Interior;Oliveira Dos Brejinhos;28ª CIPM - Ibotirama;Meio-Oeste;Velho Chico
+292330;Interior;Ouriçangas;97ª CIPM - Irará;Leste;Portal do Sertão
+292335;Interior;Ourolândia;24ª CIPM - Jacobina;Chapada;Piemonte da Diamantina
+292340;Interior;Palmas De Monte Alto;17º BPM - Guanambi;Sudoeste;Sertão Produtivo
+292350;Interior;Palmeiras;42ª CIPM - Lençóis;Chapada;Chapada Diamantina
+292360;Interior;Paramirim;46ª CIPM - Livramento de Nossa Senhora;Sudoeste;Sertão Produtivo
+292370;Interior;Paratinga;28ª CIPM - Ibotirama;Meio-Oeste;Velho Chico
+292380;Interior;Paripiranga;21ª CIPM - Cipó;Nordeste;Semiárido
+292390;Interior;Pau Brasil;62ª CIPM - Camacan;Sul;Litoral Sul
+292400;Interior;Paulo Afonso;20º BPM - Paulo Afonso;Nordeste;Itaparica
+292405;Interior;Pé De Serra;90ª CIPM - Riachão do Jacuípe;Chapada;Bacia do Jacuípe
+292410;Interior;Pedrão;4º BPM - Alagoinhas;Leste;Litoral Norte Agreste Baiano
+292420;Interior;Pedro Alexandre;20º BPM - Paulo Afonso;Nordeste;Itaparica
+292430;Interior;Piatã;29ª CIPM - Seabra;Chapada;Chapada Diamantina
+292440;Interior;Pilão Arcado;25ª CIPM - Casa Nova;Norte;Sertão do São Francisco
+292450;Interior;Pindaí;17º BPM - Guanambi;Sudoeste;Sertão Produtivo
+292460;Interior;Pindobaçu;54ª CIPM - Campo Formoso;Norte;Piemonte Norte do Itapicuru
+292465;Interior;Pintadas;98ª CIPM - Ipirá;Chapada;Bacia do Jacuípe
+292467;Interior;Piraí Do Norte;60ª CIPM - Gandu;Recôncavo;Baixo Sul
+292470;Interior;Piripá;80ª CIPM - Cândido Sales;Sudoeste;Sudoeste Baiano
+292480;Interior;Piritiba;24ª CIPM - Jacobina;Chapada;Piemonte da Diamantina
+292490;Interior;Planaltino;93ª CIPM - Maracás;Recôncavo;Vale do Jiquiriçá
+292500;Interior;Planalto;79ª CIPM - Poções;Sudoeste;Sudoeste Baiano
+292510;Interior;Poções;79ª CIPM - Poções;Sudoeste;Sudoeste Baiano
+292520;RMS;Pojuca;32ª CIPM - Pojuca;RMS;25 - Pojuca
+292525;Interior;Ponto Novo;6º BPM - Senhor do Bonfim;Norte;Piemonte Norte do Itapicuru
+292530;Interior;Porto Seguro;8º BPM - Porto Seguro;Extremo Sul;Costa do Descobrimento
+292540;Interior;Potiraguá;8ª CIPM - Itapetinga;Sul;Médio Sudoeste da Bahia
+292550;Interior;Prado;88ª CIPM - Alcobaça;Extremo Sul;Extremo Sul
+292560;Interior;Presidente Dutra;7º BPM - Irecê;Meio-Oeste;Irecê
+292570;Interior;Presidente Jânio Quadros;79ª CIPM - Poções;Sudoeste;Sudoeste Baiano
+292575;Interior;Presidente Tancredo Neves;60ª CIPM - Gandu;Recôncavo;Baixo Sul
+292580;Interior;Queimadas;16º BPM - Serrinha;Nordeste;Sisal
+292590;Interior;Quijingue;16º BPM - Serrinha;Nordeste;Sisal
+292593;Interior;Quixabeira;91ª CIPM - Capim Grosso;Chapada;Bacia do Jacuípe
+292595;Interior;Rafael Jambeiro;11º BPM - Itaberaba;Chapada;Piemonte do Paraguaçu
+292600;Interior;Remanso;25ª CIPM - Casa Nova;Norte;Sertão do São Francisco
+292610;Interior;Retirolândia;16º BPM - Serrinha;Nordeste;Sisal
+292620;Interior;Riachão Das Neves;86ª CIPM - Formosa do Rio Preto;Oeste;Bacia do Rio Grande
+292630;Interior;Riachão Do Jacuípe;90ª CIPM - Riachão do Jacuípe;Chapada;Bacia do Jacuípe
+292640;Interior;Riacho De Santana;38ª CIPM - Bom Jesus da Lapa;Meio-Oeste;Velho Chico
+292650;Interior;Ribeira Do Amparo;21ª CIPM - Cipó;Nordeste;Semiárido
+292660;Interior;Ribeira Do Pombal;21ª CIPM - Cipó;Nordeste;Semiárido
+292665;Interior;Ribeirão Do Largo;80ª CIPM - Cândido Sales;Sudoeste;Sudoeste Baiano
+292670;Interior;Rio De Contas;46ª CIPM - Livramento de Nossa Senhora;Sudoeste;Sertão Produtivo
+292680;Interior;Rio Do Antônio;24º BPM - Brumado;Sudoeste;Sertão Produtivo
+292690;Interior;Rio Do Pires;4ª CIPM - Macaúbas;Meio-Oeste;Bacia do Paramirim
+292700;Interior;Rio Real;6ª CIPM - Rio Real;Leste;Litoral Norte Agreste Baiano
+292710;Interior;Rodelas;20º BPM - Paulo Afonso;Nordeste;Itaparica
+292720;Interior;Ruy Barbosa;11º BPM - Itaberaba;Chapada;Piemonte do Paraguaçu
+292730;RMS;Salinas Da Margarida;23º BPM - Vera Cruz;Recôncavo;Recôncavo
+292750;Interior;Santa Bárbara;66ª CIPM - Feira de Santana;Leste;Portal do Sertão
+292760;Interior;Santa Brígida;20º BPM - Paulo Afonso;Nordeste;Itaparica
+292770;Interior;Santa Cruz Cabrália;8º BPM - Porto Seguro;Extremo Sul;Costa do Descobrimento
+292780;Interior;Santa Cruz Da Vitória;8ª CIPM - Itapetinga;Sul;Médio Sudoeste da Bahia
+292790;Interior;Santa Inês;19º BPM - Jequié;Sudoeste;Médio Rio de Contas
+292800;Interior;Santaluz;16º BPM - Serrinha;Nordeste;Sisal
+292805;Interior;Santa Luzia;62ª CIPM - Camacan;Sul;Litoral Sul
+292810;Interior;Santa Maria Da Vitória;30ª CIPM - Santa Maria da Vitória;Oeste;Bacia do Rio Corrente
+292820;Interior;Santana;30ª CIPM - Santa Maria da Vitória;Oeste;Bacia do Rio Corrente
+292830;Interior;Santanópolis;97ª CIPM - Irará;Leste;Portal do Sertão
+292840;Interior;Santa Rita De Cássia;86ª CIPM - Formosa do Rio Preto;Oeste;Bacia do Rio Grande
+292850;Interior;Santa Teresinha;11º BPM - Itaberaba;Chapada;Piemonte do Paraguaçu
+292860;Interior;Santo Amaro;20ª CIPM - Santo Amaro;Recôncavo;Recôncavo
+292870;Interior;Santo Antônio De Jesus;14º BPM - Santo Antônio de Jesus;Recôncavo;Recôncavo
+292880;Interior;Santo Estêvão;57ª CIPM - Santo Estevão;Leste;Portal do Sertão
+292890;Interior;São Desidério;85ª CIPM - Luís Eduardo;Oeste;Bacia do Rio Grande
+292895;Interior;São Domingos;16º BPM - Serrinha;Nordeste;Sisal
+292900;Interior;São Félix;20ª CIPM - Santo Amaro;Recôncavo;Recôncavo
+292905;Interior;São Félix Do Coribe;30ª CIPM - Santa Maria da Vitória;Oeste;Bacia do Rio Corrente
+292910;Interior;São Felipe;14º BPM - Santo Antônio de Jesus;Recôncavo;Recôncavo
+292920;RMS;São Francisco Do Conde;10ª CIPM - Candeias;RMS;26 - Candeias
+292925;Interior;São Gabriel;7º BPM - Irecê;Meio-Oeste;Irecê
+292930;Interior;São Gonçalo Dos Campos;67ª CIPM - Feira de Santana;Leste;Portal do Sertão
+292935;Interior;São José Da Vitória;62ª CIPM - Camacan;Sul;Litoral Sul
+292937;Interior;São José Do Jacuípe;91ª CIPM - Capim Grosso;Chapada;Bacia do Jacuípe
+292940;Interior;São Miguel Das Matas;99ª CIPM - Amargosa;Recôncavo;Vale do Jiquiriçá
+292950;RMS;São Sebastião do Passé;10ª CIPM - Candeias;RMS;26 - Candeias
+292960;Interior;Sapeaçu;27ª CIPM - Cruz das Almas;Recôncavo;Recôncavo
+292970;Interior;Sátiro Dias;4º BPM - Alagoinhas;Leste;Litoral Norte Agreste Baiano
+292975;Interior;Saubara;20ª CIPM - Santo Amaro;Recôncavo;Recôncavo
+292980;Interior;Saúde;24ª CIPM - Jacobina;Chapada;Piemonte da Diamantina
+292990;Interior;Seabra;29ª CIPM - Seabra;Chapada;Chapada Diamantina
+293000;Interior;Sebastião Laranjeiras;17º BPM - Guanambi;Sudoeste;Sertão Produtivo
+293010;Interior;Senhor Do Bonfim;6º BPM - Senhor do Bonfim;Norte;Piemonte Norte do Itapicuru
+293015;Interior;Serra Do Ramalho;38ª CIPM - Bom Jesus da Lapa;Meio-Oeste;Velho Chico
+293020;Interior;Sento Sé;96ª CIPM - Sobradinho;Norte;Sertão do São Francisco
+293030;Interior;Serra Dourada;30ª CIPM - Santa Maria da Vitória;Oeste;Bacia do Rio Corrente
+293040;Interior;Serra Preta;98ª CIPM - Ipirá;Chapada;Bacia do Jacuípe
+293050;Interior;Serrinha;16º BPM - Serrinha;Nordeste;Sisal
+293060;Interior;Serrolândia;24ª CIPM - Jacobina;Chapada;Piemonte da Diamantina
+293070;RMS;Simões Filho;22ª CIPM - Simões Filho;RMS;24 - Simões Filho
+293075;Interior;Sítio Do Mato;38ª CIPM - Bom Jesus da Lapa;Meio-Oeste;Velho Chico
+293076;Interior;Sítio Do Quinto;5º BPM - Euclides da Cunha;Nordeste;Semiárido
+293077;Interior;Sobradinho;96ª CIPM - Sobradinho;Norte;Sertão do São Francisco
+293080;Interior;Souto Soares;29ª CIPM - Seabra;Chapada;Chapada Diamantina
+293090;Interior;Tabocas Do Brejo Velho;30ª CIPM - Santa Maria da Vitória;Oeste;Bacia do Rio Corrente
+293100;Interior;Tanhaçu;24º BPM - Brumado;Sudoeste;Sertão Produtivo
+293105;Interior;Tanque Novo;94ª CIPM - Caetité;Sudoeste;Sertão Produtivo
+293110;Interior;Tanquinho;65ª CIPM - Feira de Santana;Leste;Portal do Sertão
+293120;Interior;Taperoá;33ª CIPM - Valença;Recôncavo;Baixo Sul
+293130;Interior;Tapiramutá;24ª CIPM - Jacobina;Chapada;Piemonte da Diamantina
+293135;Interior;Teixeira De Freitas;87ª CIPM - Texeira de Freitas;Extremo Sul;Extremo Sul
+293140;Interior;Teodoro Sampaio;97ª CIPM - Irará;Leste;Portal do Sertão
+293150;Interior;Teofilândia;16º BPM - Serrinha;Nordeste;Sisal
+293160;Interior;Teolândia;60ª CIPM - Gandu;Recôncavo;Baixo Sul
+293170;Interior;Terra Nova;97ª CIPM - Irará;Leste;Portal do Sertão
+293180;Interior;Tremedal;80ª CIPM - Cândido Sales;Sudoeste;Sudoeste Baiano
+293190;Interior;Tucano;5º BPM - Euclides da Cunha;Nordeste;Semiárido
+293200;Interior;Uauá;45ª CIPM - Curaçá;Norte;Sertão do São Francisco
+293210;Interior;Ubaíra;99ª CIPM - Amargosa;Recôncavo;Vale do Jiquiriçá
+293220;Interior;Ubaitaba;61ª CIPM - Ubaitaba;Sul;Litoral Sul
+293230;Interior;Ubatã;55ª CIPM - Ipiaú;Sudoeste;Médio Rio de Contas
+293240;Interior;Uibaí;7º BPM - Irecê;Meio-Oeste;Irecê
+293245;Interior;Umburanas;24ª CIPM - Jacobina;Chapada;Piemonte da Diamantina
+293250;Interior;Una;71ª CIPM - Canavieiras;Sul;Litoral Sul
+293260;Interior;Urandi;17º BPM - Guanambi;Sudoeste;Sertão Produtivo
+293270;Interior;Uruçuca;72ª CIPM - Itacaré;Sul;Litoral Sul
+293280;Interior;Utinga;42ª CIPM - Lençóis;Chapada;Chapada Diamantina
+293290;Interior;Valença;33ª CIPM - Valença;Recôncavo;Baixo Sul
+293300;Interior;Valente;16º BPM - Serrinha;Nordeste;Sisal
+293305;Interior;Várzea Da Roça;91ª CIPM - Capim Grosso;Chapada;Bacia do Jacuípe
+293310;Interior;Várzea Do Poço;91ª CIPM - Capim Grosso;Chapada;Bacia do Jacuípe
+293315;Interior;Várzea Nova;24ª CIPM - Jacobina;Chapada;Piemonte da Diamantina
+293317;Interior;Varzedo;14º BPM - Santo Antônio de Jesus;Recôncavo;Recôncavo
+293320;RMS;Vera Cruz;23º BPM - Vera Cruz;Recôncavo;Recôncavo
+293325;Interior;Vereda;44ª CIPM - Medeiros Neto;Extremo Sul;Extremo Sul
+293330;Interior;Vitória Da Conquista;77ª, 78ª e 92ª CIPM - Vitória da Conquista;Sudoeste;Sudoeste Baiano
+293340;Interior;Wagner;42ª CIPM - Lençóis;Chapada;Chapada Diamantina
+293345;Interior;Wanderley;84ª CIPM - Barreiras;Oeste;Bacia do Rio Grande
+293350;Interior;Wenceslau Guimarães;60ª CIPM - Gandu;Recôncavo;Baixo Sul
+293360;Interior;Xique-Xique;7º BPM - Irecê;Meio-Oeste;Irecê

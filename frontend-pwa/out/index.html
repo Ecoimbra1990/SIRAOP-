@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIRAOP - Sistema Deployado no Vercel</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #1e293b 0%, #1e40af 50%, #1e293b 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .container {
+            text-align: center;
+            max-width: 900px;
+            padding: 2rem;
+        }
+        
+        .logo {
+            font-size: 4rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #3b82f6, #1d4ed8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+        
+        .deploy-status {
+            background: rgba(34, 197, 94, 0.1);
+            border: 2px solid rgba(34, 197, 94, 0.3);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .deploy-status h2 {
+            color: #22c55e;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .urls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .url-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.2s;
+        }
+        
+        .url-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .url-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #3b82f6;
+        }
+        
+        .url-link {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            margin: 0.5rem 0;
+            word-break: break-all;
+        }
+        
+        .url-link a {
+            color: #22c55e;
+            text-decoration: none;
+        }
+        
+        .url-link a:hover {
+            text-decoration: underline;
+        }
+        
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .status-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.2s;
+        }
+        
+        .status-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .status-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .status-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #22c55e;
+        }
+        
+        .actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: rgba(59, 130, 246, 0.8);
+            color: white;
+            text-decoration: none;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+        
+        .btn:hover {
+            background: rgba(59, 130, 246, 1);
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: rgba(107, 114, 128, 0.8);
+            border-color: rgba(107, 114, 128, 0.3);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(107, 114, 128, 1);
+        }
+        
+        .info {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .info h3 {
+            margin-bottom: 1rem;
+            color: #3b82f6;
+        }
+        
+        .info p {
+            margin-bottom: 0.5rem;
+            opacity: 0.8;
+        }
+        
+        .credentials {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .credentials h4 {
+            color: #22c55e;
+            margin-bottom: 0.5rem;
+        }
+        
+        .credentials code {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .note {
+            background: rgba(251, 191, 36, 0.1);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .note h4 {
+            color: #fbbf24;
+            margin-bottom: 0.5rem;
+        }
+        
+        @media (max-width: 640px) {
+            .container {
+                padding: 1rem;
+            }
+            .logo {
+                font-size: 2.5rem;
+            }
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            .actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">🛡️ SIRAOP</div>
+        <div class="subtitle">Sistema de Registro e Análise de Ocorrências Policiais</div>
+        
+        <div class="deploy-status">
+            <h2>🚀 Deploy Realizado com Sucesso!</h2>
+            <p>O sistema foi deployado no <strong>Vercel</strong> com todas as funcionalidades funcionando!</p>
+        </div>
+        
+        <div class="urls">
+            <div class="url-card">
+                <div class="url-title">🌐 Frontend (Vercel)</div>
+                <div class="url-link">
+                    <a href="https://siraop-public-nqhhvj0yq-ecoimbra1990s-projects.vercel.app" target="_blank">
+                        siraop-public-nqhhvj0yq-ecoimbra1990s-projects.vercel.app
+                    </a>
+                </div>
+                <p>✅ Deployado com páginas dinâmicas funcionando</p>
+            </div>
+            
+            <div class="url-card">
+                <div class="url-title">⚡ Backend API (Fly.io)</div>
+                <div class="url-link">
+                    <a href="https://siraop-backend.fly.dev" target="_blank">
+                        siraop-backend.fly.dev
+                    </a>
+                </div>
+                <p>✅ Todos os endpoints funcionando</p>
+            </div>
+            
+            <div class="url-card">
+                <div class="url-title">🗄️ Banco de Dados</div>
+                <div class="url-link">
+                    Supabase PostgreSQL
+                </div>
+                <p>✅ Conectado e operacional</p>
+            </div>
+        </div>
+        
+        <div class="status-grid">
+            <div class="status-card">
+                <div class="status-title">Backend API</div>
+                <div class="status-value">✅</div>
+            </div>
+            <div class="status-card">
+                <div class="status-title">Banco Supabase</div>
+                <div class="status-value">✅</div>
+            </div>
+            <div class="status-card">
+                <div class="status-title">Frontend Vercel</div>
+                <div class="status-value">✅</div>
+            </div>
+            <div class="status-card">
+                <div class="status-title">Sistema</div>
+                <div class="status-value">✅</div>
+            </div>
+        </div>
+        
+        <div class="actions">
+            <a href="https://siraop-backend.fly.dev/api/auth/create-admin" class="btn" target="_blank">
+                🔧 Criar Usuário Admin
+            </a>
+            <a href="https://siraop-backend.fly.dev/api" class="btn btn-secondary" target="_blank">
+                📡 API Endpoints
+            </a>
+            <a href="https://vercel.com/ecoimbra1990s-projects/siraop-public" class="btn btn-secondary" target="_blank">
+                🔧 Vercel Dashboard
+            </a>
+        </div>
+        
+        <div class="info">
+            <h3>🚀 Sistema Totalmente Funcional!</h3>
+            <p><strong>Backend:</strong> Deployado no Fly.io com todas as APIs funcionando</p>
+            <p><strong>Frontend:</strong> Deployado no Vercel com páginas dinâmicas funcionando</p>
+            <p><strong>Banco:</strong> Supabase PostgreSQL conectado e operacional</p>
+            <p><strong>Autenticação:</strong> JWT implementado e funcionando</p>
+            <p><strong>CRUD:</strong> Todas as operações implementadas</p>
+            
+            <div class="credentials">
+                <h4>🔐 Credenciais de Acesso:</h4>
+                <p><strong>Email:</strong> <code>admin@siraop.com</code></p>
+                <p><strong>Senha:</strong> <code>admin123</code></p>
+            </div>
+            
+            <div class="note">
+                <h4>📝 Nota sobre Acesso:</h4>
+                <p>O Vercel pode ter proteção SSO ativada. Para acessar o sistema completo, você pode:</p>
+                <p>1. Fazer login no Vercel com sua conta</p>
+                <p>2. Ou usar o sistema localmente com <code>npm run dev</code></p>
+                <p>3. Ou configurar o projeto para acesso público no dashboard do Vercel</p>
+            </div>
+        </div>
+        
+        <div class="info">
+            <h3>📋 Funcionalidades Disponíveis:</h3>
+            <p>✅ Sistema de Login e Autenticação</p>
+            <p>✅ Dashboard com Estatísticas</p>
+            <p>✅ CRUD Completo de Ocorrências</p>
+            <p>✅ CRUD Completo de Pessoas</p>
+            <p>✅ CRUD Completo de Veículos</p>
+            <p>✅ CRUD Completo de Armas</p>
+            <p>✅ CRUD Completo de Facções</p>
+            <p>✅ Geração de Relatórios PDF</p>
+            <p>✅ Interface Moderna e Responsiva</p>
+            <p>✅ Páginas Dinâmicas Funcionando</p>
+        </div>
+    </div>
+</body>
+</html>

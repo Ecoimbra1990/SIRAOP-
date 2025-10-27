@@ -11,6 +11,10 @@ async function bootstrap() {
       process.env.FRONTEND_URL || 'http://localhost:3000',
       'https://siraop-frontend.web.app',
       'https://siraop-frontend.firebaseapp.com',
+      'https://siraop-public.vercel.app',
+      'https://siraop-public-nqhhvj0yq-ecoimbra1990s-projects.vercel.app',
+      'https://frontend-pwa.vercel.app',
+      'https://*.vercel.app',
       'http://localhost:3000',
       'http://127.0.0.1:3000'
     ],

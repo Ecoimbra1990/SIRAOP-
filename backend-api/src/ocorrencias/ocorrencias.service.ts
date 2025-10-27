@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Repository, In } from 'typeorm';
 import { Ocorrencia } from './entities/ocorrencia.entity';
 import { CreateOcorrenciaDto } from './dto/create-ocorrencia.dto';
 import { UpdateOcorrenciaDto } from './dto/update-ocorrencia.dto';
@@ -77,7 +77,22 @@ export class OcorrenciasService {
 
   // Buscar ocorrências por IDs (para relatórios)
   async findByIds(ids: string[]): Promise<Ocorrencia[]> {
-    return this.ocorrenciasRepository.findByIds(ids);
+    if (!ids || ids.length === 0) {
+      return [];
+    }
+    
+    return this.ocorrenciasRepository.find({
+      where: {
+        id: In(ids)
+      },
+      relations: [
+        'pessoas_envolvidas',
+        'veiculos_envolvidos', 
+        'armas_envolvidas',
+        'faccoes_envolvidas',
+        'anexos'
+      ]
+    });
   }
 
   // Buscar ocorrências próximas a um ponto (PostGIS)

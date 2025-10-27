@@ -10,13 +10,13 @@ export function useAuth() {
       setHydrated(true);
     }
     
-    // Se temos dados de autenticação, marcar como autenticado
+    // Se temos dados de autenticação válidos, marcar como autenticado
     if (user && token && !isAuthenticated) {
       useUserStore.getState().login(user, token);
     }
     
-    // Se não temos dados, marcar como não autenticado
-    if (!user || !token) {
+    // Só marcar como não autenticado se realmente não temos dados E já estamos hidratados
+    if (isHydrated && (!user || !token) && isAuthenticated) {
       useUserStore.getState().logout();
     }
     

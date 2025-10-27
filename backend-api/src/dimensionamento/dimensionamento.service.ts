@@ -33,6 +33,72 @@ export class DimensionamentoService {
     });
   }
 
+  async findAllPaginated(params: {
+    page: number;
+    limit: number;
+    search?: string;
+    regiao?: string;
+    opm?: string;
+    risp?: string;
+    aisp?: string;
+  }): Promise<{
+    items: Dimensionamento[];
+    total: number;
+    page: number;
+    limit: number;
+    hasMore: boolean;
+  }> {
+    const { page, limit, search, regiao, opm, risp, aisp } = params;
+    const skip = (page - 1) * limit;
+
+    // Construir query builder
+    const queryBuilder = this.dimensionamentoRepository.createQueryBuilder('dimensionamento');
+
+    // Aplicar filtros
+    if (search) {
+      queryBuilder.andWhere(
+        '(dimensionamento.municipio_bairro ILIKE :search OR dimensionamento.opm ILIKE :search OR dimensionamento.risp ILIKE :search OR dimensionamento.aisp ILIKE :search)',
+        { search: `%${search}%` }
+      );
+    }
+
+    if (regiao) {
+      queryBuilder.andWhere('dimensionamento.regiao = :regiao', { regiao });
+    }
+
+    if (opm) {
+      queryBuilder.andWhere('dimensionamento.opm ILIKE :opm', { opm: `%${opm}%` });
+    }
+
+    if (risp) {
+      queryBuilder.andWhere('dimensionamento.risp = :risp', { risp });
+    }
+
+    if (aisp) {
+      queryBuilder.andWhere('dimensionamento.aisp = :aisp', { aisp });
+    }
+
+    // Ordenação
+    queryBuilder.orderBy('dimensionamento.codigo', 'ASC');
+
+    // Contar total
+    const total = await queryBuilder.getCount();
+
+    // Aplicar paginação
+    queryBuilder.skip(skip).take(limit);
+
+    // Executar query
+    const items = await queryBuilder.getMany();
+
+    return {
+      items,
+      total,
+      page,
+      limit,
+      hasMore: skip + limit < total
+    };
+  }
+
   async findByRegiao(regiao: string): Promise<Dimensionamento[]> {
     return this.dimensionamentoRepository.find({
       where: { regiao },
@@ -109,9 +175,14 @@ export class DimensionamentoService {
   }
 
   async import(importDto: ImportDimensionamentoDto): Promise<{ imported: number; errors: string[] }> {
+    console.log('🔍 Iniciando importação...');
+    console.log('📊 Repositório disponível:', !!this.dimensionamentoRepository);
+    
     const lines = importDto.csvContent.split('\n').filter(line => line.trim());
     const errors: string[] = [];
     let imported = 0;
+
+    console.log('📊 Total de linhas:', lines.length);
 
     // Processar cada linha do CSV
     for (let i = 1; i < lines.length; i++) { // Pular cabeçalho

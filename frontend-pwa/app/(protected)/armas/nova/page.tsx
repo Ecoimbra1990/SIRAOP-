@@ -135,12 +135,27 @@ export default function NovaArmaPage() {
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Calibre
                 </label>
-                <input
+                <select
                   {...register('calibre')}
-                  type="text"
                   className="input"
-                  placeholder="Ex: 9mm, .40, .45"
-                />
+                >
+                  <option value="">Selecione o calibre</option>
+                  <option value="9mm">9mm</option>
+                  <option value=".40">.40</option>
+                  <option value=".45">.45</option>
+                  <option value=".38">.38</option>
+                  <option value=".357">.357</option>
+                  <option value=".44">.44</option>
+                  <option value=".50">.50</option>
+                  <option value="5.56mm">5.56mm</option>
+                  <option value="7.62mm">7.62mm</option>
+                  <option value="12 gauge">12 gauge</option>
+                  <option value="20 gauge">20 gauge</option>
+                  <option value=".22">.22</option>
+                  <option value=".380">.380</option>
+                  <option value=".32">.32</option>
+                  <option value="Outros">Outros</option>
+                </select>
               </div>
             </div>
           </div>

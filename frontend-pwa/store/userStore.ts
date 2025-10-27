@@ -78,6 +78,10 @@ export const useUserStore = create<AuthState>()(
           // Verificar se temos dados válidos após rehidratação
           if (state.user && state.token) {
             state.isAuthenticated = true;
+          } else {
+            state.isAuthenticated = false;
+            state.user = null;
+            state.token = null;
           }
           state.isLoading = false;
           state.isHydrated = true;
