@@ -250,19 +250,50 @@ export class DimensionamentoService {
     porRisp: Record<string, number>;
     porAisp: Record<string, number>;
   }> {
-    const all = await this.dimensionamentoRepository.find();
-    
+    // Usar consultas SQL otimizadas em vez de carregar todos os registros
+    const totalQuery = await this.dimensionamentoRepository
+      .createQueryBuilder('d')
+      .select('COUNT(*)', 'total')
+      .getRawOne();
+
+    const regiaoQuery = await this.dimensionamentoRepository
+      .createQueryBuilder('d')
+      .select('d.regiao', 'regiao')
+      .addSelect('COUNT(*)', 'count')
+      .groupBy('d.regiao')
+      .getRawMany();
+
+    const rispQuery = await this.dimensionamentoRepository
+      .createQueryBuilder('d')
+      .select('d.risp', 'risp')
+      .addSelect('COUNT(*)', 'count')
+      .groupBy('d.risp')
+      .getRawMany();
+
+    const aispQuery = await this.dimensionamentoRepository
+      .createQueryBuilder('d')
+      .select('d.aisp', 'aisp')
+      .addSelect('COUNT(*)', 'count')
+      .groupBy('d.aisp')
+      .getRawMany();
+
     const stats = {
-      total: all.length,
+      total: parseInt(totalQuery.total),
       porRegiao: {},
       porRisp: {},
       porAisp: {}
     };
 
-    all.forEach(item => {
-      stats.porRegiao[item.regiao] = (stats.porRegiao[item.regiao] || 0) + 1;
-      stats.porRisp[item.risp] = (stats.porRisp[item.risp] || 0) + 1;
-      stats.porAisp[item.aisp] = (stats.porAisp[item.aisp] || 0) + 1;
+    regiaoQuery.forEach(item => {
+      stats.porRegiao[item.regiao] = parseInt(item.count);
+    });
+
+    rispQuery.forEach(item => {
+      stats.porRisp[item.risp] = parseInt(item.count);
+    });
+
+    aispQuery.forEach(item => {
+      stats.porAisp[item.aisp] = parseInt(item.count);
     });
 
     return stats;

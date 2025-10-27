@@ -40,8 +40,6 @@ interface Stats {
 }
 
 export default function DimensionamentoPage() {
-  console.log('🚀 VERCEL DEBUG v3.0 - Componente carregado');
-  console.log('🚀 VERCEL DEBUG v3.0 - Stats inicial:', null);
   
   const [dimensionamentos, setDimensionamentos] = useState<Dimensionamento[]>([]);
   const [stats, setStats] = useState<Stats | null>(null);
@@ -62,17 +60,25 @@ export default function DimensionamentoPage() {
   const router = useRouter();
 
   useEffect(() => {
-    loadDimensionamentos();
+    // Não carregar dados automaticamente - apenas estatísticas básicas
     loadStats();
   }, []);
 
   useEffect(() => {
-    // Recarregar quando filtros mudarem
-    const timeoutId = setTimeout(() => {
-      loadDimensionamentos(1, false);
-    }, 500); // Debounce de 500ms
+    // Só recarregar quando filtros mudarem E houver filtros ativos
+    const hasActiveFilters = searchTerm.trim() || filterRegiao || filterOpm.trim();
+    
+    if (hasActiveFilters) {
+      const timeoutId = setTimeout(() => {
+        loadDimensionamentos(1, false);
+      }, 500); // Debounce de 500ms
 
-    return () => clearTimeout(timeoutId);
+      return () => clearTimeout(timeoutId);
+    } else {
+      // Se não há filtros, limpar dados
+      setDimensionamentos([]);
+      setTotalCount(0);
+    }
   }, [searchTerm, filterRegiao, filterOpm]);
 
   const loadDimensionamentos = async (page = 1, append = false) => {
@@ -185,77 +191,17 @@ export default function DimensionamentoPage() {
 
   const loadStats = async () => {
     try {
-      console.log('🔍 VERCEL DEBUG - Iniciando loadStats');
-      console.log('🔍 VERCEL DEBUG - Stats atual:', stats);
       console.log('📊 Carregando estatísticas...');
       
-      // Tentar carregar dados sem paginação para obter todos os registros
-      const statsData = await dimensionamentoApi.getAll({
-        page: 1,
-        limit: 1000 // Limite alto para pegar todos os dados
-      });
+      // Usar endpoint específico de estatísticas (muito mais rápido)
+      const statsData = await dimensionamentoApi.getStats();
       
-      console.log('📊 Dados recebidos para estatísticas:', statsData);
-      console.log('🔍 VERCEL DEBUG - Tipo dos dados:', typeof statsData);
-      console.log('🔍 VERCEL DEBUG - É array?', Array.isArray(statsData));
-
-      // Se a resposta é paginada, usar os dados paginados
-      if (statsData && typeof statsData === 'object' && 'items' in statsData) {
-        const items = statsData.items;
-        const stats = {
-          total: statsData.total,
-          porRegiao: {} as Record<string, number>,
-          porRisp: {} as Record<string, number>,
-          porAisp: {} as Record<string, number>
-        };
-
-        items.forEach((item: Dimensionamento) => {
-          stats.porRegiao[item.regiao] = (stats.porRegiao[item.regiao] || 0) + 1;
-          stats.porRisp[item.risp] = (stats.porRisp[item.risp] || 0) + 1;
-          stats.porAisp[item.aisp] = (stats.porAisp[item.aisp] || 0) + 1;
-        });
-
-        console.log('📊 Estatísticas calculadas:', stats);
-        console.log('🔍 VERCEL DEBUG - Definindo stats:', stats);
-        setStats(stats);
-        console.log('🔍 VERCEL DEBUG - Stats definido com sucesso');
-      } else if (Array.isArray(statsData)) {
-        // Se a resposta é um array simples
-        const stats = {
-          total: statsData.length,
-          porRegiao: {} as Record<string, number>,
-          porRisp: {} as Record<string, number>,
-          porAisp: {} as Record<string, number>
-        };
-
-        statsData.forEach((item: Dimensionamento) => {
-          stats.porRegiao[item.regiao] = (stats.porRegiao[item.regiao] || 0) + 1;
-          stats.porRisp[item.risp] = (stats.porRisp[item.risp] || 0) + 1;
-          stats.porAisp[item.aisp] = (stats.porAisp[item.aisp] || 0) + 1;
-        });
-
-        console.log('📊 Estatísticas calculadas:', stats);
-        console.log('🔍 VERCEL DEBUG - Definindo stats:', stats);
-        setStats(stats);
-        console.log('🔍 VERCEL DEBUG - Stats definido com sucesso');
-      } else {
-        // Banco vazio - mostrar zeros
-        console.log('📊 Banco vazio - definindo estatísticas como zero');
-        setStats({
-          total: 0,
-          porRegiao: {},
-          porRisp: {},
-          porAisp: {}
-        });
-      }
+      console.log('📊 Estatísticas recebidas:', statsData);
+      setStats(statsData);
+      console.log('✅ Estatísticas carregadas com sucesso');
+      
     } catch (error) {
       console.error('❌ Erro ao carregar estatísticas:', error);
-      console.log('🔍 VERCEL DEBUG - Erro capturado, definindo stats como zero');
-      console.log('🔍 VERCEL DEBUG - Erro details:', {
-        message: error instanceof Error ? error.message : 'Erro desconhecido',
-        status: (error as any)?.response?.status,
-        data: (error as any)?.response?.data
-      });
       // Banco vazio ou erro - mostrar zeros
       setStats({
         total: 0,
@@ -263,7 +209,6 @@ export default function DimensionamentoPage() {
         porRisp: {},
         porAisp: {}
       });
-      console.log('🔍 VERCEL DEBUG - Stats definido como zero após erro');
     }
   };
 
@@ -377,10 +322,10 @@ export default function DimensionamentoPage() {
           <div>
             <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
               <MapPin className="h-8 w-8 text-primary-600" />
-              Dimensionamento Territorial 🚀 v3.0 - {new Date().toISOString().slice(0,19)}
+              Dimensionamento Territorial
             </h1>
             <p className="text-gray-600 mt-2">
-              Gerencie o dimensionamento territorial da PMBA - DEPLOY TESTE
+              Gerencie o dimensionamento territorial da PMBA
             </p>
           </div>
           <div className="flex items-center gap-4">
@@ -547,17 +492,30 @@ export default function DimensionamentoPage() {
               />
             </div>
             
-            <div className="flex items-end">
+            <div className="flex items-end gap-2">
+              <button
+                onClick={() => {
+                  const hasActiveFilters = searchTerm.trim() || filterRegiao || filterOpm.trim();
+                  if (hasActiveFilters) {
+                    loadDimensionamentos(1, false);
+                  }
+                }}
+                className="btn-primary flex-1"
+                disabled={!searchTerm.trim() && !filterRegiao && !filterOpm.trim()}
+              >
+                <Search className="h-4 w-4 mr-2" />
+                Buscar
+              </button>
               <button
                 onClick={() => {
                   setSearchTerm('');
                   setFilterRegiao('');
                   setFilterOpm('');
                 }}
-                className="btn-outline w-full"
+                className="btn-outline"
               >
                 <Filter className="h-4 w-4 mr-2" />
-                Limpar Filtros
+                Limpar
               </button>
             </div>
           </div>
@@ -600,7 +558,36 @@ export default function DimensionamentoPage() {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {dimensionamentos.map((item) => (
+                {dimensionamentos.length === 0 && !isLoading ? (
+                  <tr>
+                    <td colSpan={7} className="px-6 py-12 text-center text-gray-500">
+                      <div className="flex flex-col items-center gap-4">
+                        <Search className="h-12 w-12 text-gray-300" />
+                        <div>
+                          <p className="text-lg font-medium text-gray-900 mb-2">
+                            Nenhum registro carregado
+                          </p>
+                          <p className="text-sm text-gray-500 mb-4">
+                            Use os filtros acima para buscar dados específicos
+                          </p>
+                          <button
+                            onClick={() => {
+                              setSearchTerm('');
+                              setFilterRegiao('');
+                              setFilterOpm('');
+                              loadDimensionamentos(1, false);
+                            }}
+                            className="btn-primary"
+                          >
+                            <Search className="h-4 w-4 mr-2" />
+                            Carregar Todos os Dados
+                          </button>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                ) : (
+                  dimensionamentos.map((item) => (
                   <tr key={item.id} className="hover:bg-gray-50">
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                       {item.codigo}
@@ -640,7 +627,8 @@ export default function DimensionamentoPage() {
                       </div>
                     </td>
                   </tr>
-                ))}
+                  ))
+                )}
               </tbody>
             </table>
           </div>

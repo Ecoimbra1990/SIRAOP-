@@ -6,13 +6,13 @@ export declare class DimensionamentoController {
     private readonly dimensionamentoService;
     constructor(dimensionamentoService: DimensionamentoService);
     create(createDimensionamentoDto: CreateDimensionamentoDto): Promise<import("./entities/dimensionamento.entity").Dimensionamento>;
-    findAll(page?: string, limit?: string, search?: string, regiao?: string, opm?: string, risp?: string, aisp?: string): Promise<{
+    findAll(page?: string, limit?: string, search?: string, regiao?: string, opm?: string, risp?: string, aisp?: string): Promise<import("./entities/dimensionamento.entity").Dimensionamento[]> | Promise<{
         items: import("./entities/dimensionamento.entity").Dimensionamento[];
         total: number;
         page: number;
         limit: number;
         hasMore: boolean;
-    }> | Promise<import("./entities/dimensionamento.entity").Dimensionamento[]>;
+    }>;
     test(): {
         message: string;
         timestamp: string;

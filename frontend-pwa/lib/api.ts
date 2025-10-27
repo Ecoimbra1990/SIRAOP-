@@ -293,4 +293,9 @@ export const dimensionamentoApi = {
     const response = await api.post('/dimensionamento/import', data);
     return response.data;
   },
+  
+  getStats: async () => {
+    const response = await api.get('/dimensionamento/stats');
+    return response.data;
+  },
 };
