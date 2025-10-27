@@ -40,6 +40,9 @@ interface Stats {
 }
 
 export default function DimensionamentoPage() {
+  console.log('🚀 VERCEL DEBUG v3.0 - Componente carregado');
+  console.log('🚀 VERCEL DEBUG v3.0 - Stats inicial:', null);
+  
   const [dimensionamentos, setDimensionamentos] = useState<Dimensionamento[]>([]);
   const [stats, setStats] = useState<Stats | null>(null);
   const [isLoading, setIsLoading] = useState(true);
