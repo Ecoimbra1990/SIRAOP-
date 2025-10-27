@@ -377,7 +377,7 @@ export default function DimensionamentoPage() {
           <div>
             <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-3">
               <MapPin className="h-8 w-8 text-primary-600" />
-              Dimensionamento Territorial 🚀 v3.0
+              Dimensionamento Territorial 🚀 v3.0 - {new Date().toISOString().slice(0,19)}
             </h1>
             <p className="text-gray-600 mt-2">
               Gerencie o dimensionamento territorial da PMBA - DEPLOY TESTE
