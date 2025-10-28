@@ -49,55 +49,55 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-pm-light flex items-center justify-center p-4">
       {/* Background Pattern */}
-      <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.05%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%221%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
+      <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23f8f9fa%22%20fill-opacity%3D%220.1%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%221%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-30"></div>
       
       <div className="relative w-full max-w-md">
         {/* Logo Section */}
         <div className="text-center mb-8">
-          <div className="mx-auto h-20 w-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mb-6 shadow-2xl">
-            <Shield className="h-10 w-10 text-white" />
+          <div className="mx-auto h-20 w-20 bg-pm-accent rounded-2xl flex items-center justify-center mb-6 shadow-lg">
+            <Shield className="h-10 w-10 text-pm-white" />
           </div>
-          <h1 className="text-4xl font-bold text-white mb-2">
+          <h1 className="text-4xl font-bold text-pm-dark mb-2">
             SIRAOP
           </h1>
-          <p className="text-blue-200 text-sm font-medium">
+          <p className="text-secondary-600 text-sm font-medium">
             Sistema de Registro e Análise de Ocorrências Policiais
           </p>
         </div>
 
         {/* Login Form */}
-        <div className="bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl border border-white/20 p-8">
+        <div className="bg-white rounded-2xl shadow-xl border border-gray-200 p-8">
           <div className="mb-6">
-            <h2 className="text-2xl font-bold text-white mb-2">Acesso ao Sistema</h2>
-            <p className="text-blue-200 text-sm">Digite suas credenciais para continuar</p>
+            <h2 className="text-2xl font-bold text-pm-dark mb-2">Acesso ao Sistema</h2>
+            <p className="text-secondary-600 text-sm">Digite suas credenciais para continuar</p>
           </div>
 
           <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
             {error && (
-              <div className="bg-red-500/20 border border-red-500/30 text-red-200 px-4 py-3 rounded-xl flex items-center gap-2">
+              <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl flex items-center gap-2">
                 <AlertCircle className="h-4 w-4" />
                 {error}
               </div>
             )}
 
             <div className="space-y-2">
-              <label htmlFor="email" className="block text-sm font-medium text-white">
+              <label htmlFor="email" className="block text-sm font-medium text-pm-dark">
                 Email
               </label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-blue-300" />
+                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-secondary-500" />
                 <input
                   {...register('email')}
                   type="email"
                   autoComplete="email"
-                  className="w-full pl-12 pr-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-                  placeholder="seu@email.com"
+                  className="w-full pl-12 pr-4 py-3 bg-white border border-gray-300 rounded-xl text-pm-dark placeholder-secondary-500 focus:outline-none focus:ring-2 focus:ring-pm-accent focus:border-transparent transition-all duration-200"
+                  placeholder="admin@siraop.com"
                 />
               </div>
               {errors.email && (
-                <p className="text-red-300 text-sm flex items-center gap-1">
+                <p className="text-red-600 text-sm flex items-center gap-1">
                   <AlertCircle className="h-3 w-3" />
                   {errors.email.message}
                 </p>
@@ -105,21 +105,21 @@ export default function LoginPage() {
             </div>
 
             <div className="space-y-2">
-              <label htmlFor="password" className="block text-sm font-medium text-white">
+              <label htmlFor="password" className="block text-sm font-medium text-pm-dark">
                 Senha
               </label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-blue-300" />
+                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-secondary-500" />
                 <input
                   {...register('password')}
                   type={showPassword ? 'text' : 'password'}
                   autoComplete="current-password"
-                  className="w-full pl-12 pr-12 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-blue-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                  className="w-full pl-12 pr-12 py-3 bg-white border border-gray-300 rounded-xl text-pm-dark placeholder-secondary-500 focus:outline-none focus:ring-2 focus:ring-pm-accent focus:border-transparent transition-all duration-200"
                   placeholder="Sua senha"
                 />
                 <button
                   type="button"
-                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-blue-300 hover:text-white transition-colors"
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-secondary-500 hover:text-pm-dark transition-colors"
                   onClick={() => setShowPassword(!showPassword)}
                 >
                   {showPassword ? (
@@ -130,7 +130,7 @@ export default function LoginPage() {
                 </button>
               </div>
               {errors.password && (
-                <p className="text-red-300 text-sm flex items-center gap-1">
+                <p className="text-red-600 text-sm flex items-center gap-1">
                   <AlertCircle className="h-3 w-3" />
                   {errors.password.message}
                 </p>
@@ -140,7 +140,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-transparent disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none shadow-lg"
+              className="w-full bg-pm-accent hover:bg-pm-dark text-pm-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-pm-accent focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none shadow-lg"
             >
               {isLoading ? (
                 <div className="flex items-center justify-center gap-2">
@@ -153,10 +153,10 @@ export default function LoginPage() {
             </button>
           </form>
 
-          <div className="mt-8 pt-6 border-t border-white/20">
+          <div className="mt-8 pt-6 border-t border-gray-200">
             <div className="text-center">
-              <p className="text-blue-200 text-sm">
-                <Shield className="inline h-4 w-4 mr-1" />
+              <p className="text-secondary-600 text-sm">
+                <Lock className="inline h-4 w-4 mr-1" />
                 Acesso restrito a policiais autorizados
               </p>
             </div>
@@ -165,7 +165,7 @@ export default function LoginPage() {
 
         {/* Footer */}
         <div className="text-center mt-8">
-          <p className="text-blue-300 text-sm">
+          <p className="text-secondary-500 text-sm">
             © 2024 SIRAOP - Sistema de Registro e Análise de Ocorrências Policiais
           </p>
         </div>

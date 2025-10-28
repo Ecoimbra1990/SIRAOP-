@@ -15,7 +15,7 @@ export const viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
-  themeColor: '#2563eb',
+  themeColor: '#1e3a8a',
 };
 
 export default function RootLayout({
@@ -32,11 +32,14 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-title" content="SIRAOP" />
         <link rel="apple-touch-icon" href="/icon-192x192.png" />
         <link rel="icon" href="/favicon.ico" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
       </head>
       <body className={inter.className}>
-        <div className="min-h-screen bg-gray-50">
+        <div className="min-h-screen bg-pm-light">
           {children}
         </div>
+        <script src="/suppress-warnings.js" defer></script>
+        {/* <script src="/cache-bust-ultra.js?v=ultra" defer></script> */}
       </body>
     </html>
   );

@@ -19,7 +19,15 @@ import {
   User
 } from 'lucide-react';
 
-const navigation = [
+// Navegação para usuários comuns (policiais)
+const commonNavigation = [
+  { name: 'Dashboard', href: '/dashboard', icon: Home },
+  { name: 'Nova Ocorrência', href: '/ocorrencias/nova', icon: FileText },
+  { name: 'Ocorrências', href: '/ocorrencias', icon: FileText },
+];
+
+// Navegação completa para administradores
+const adminNavigation = [
   { name: 'Dashboard', href: '/dashboard', icon: Home },
   { name: 'Admin', href: '/admin', icon: Database },
   { name: 'Ocorrências', href: '/ocorrencias', icon: FileText },
@@ -35,6 +43,9 @@ export default function Navbar() {
   const { user, logout } = useUserStore();
   const router = useRouter();
   const pathname = usePathname();
+
+  // Escolher navegação baseada no role do usuário
+  const navigation = user?.role === 'admin' ? adminNavigation : commonNavigation;
 
   const handleLogout = () => {
     logout();
@@ -54,10 +65,10 @@ export default function Navbar() {
             <div className="flex items-center">
               <div className="flex-shrink-0">
                 <div className="flex items-center">
-                  <div className="h-8 w-8 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center mr-3">
-                    <Shield className="h-5 w-5 text-white" />
+                  <div className="h-8 w-8 bg-pm-accent rounded-lg flex items-center justify-center mr-3">
+                    <Shield className="h-5 w-5 text-pm-white" />
                   </div>
-                  <h1 className="text-xl font-bold text-gray-900">SIRAOP</h1>
+                  <h1 className="text-xl font-bold text-pm-dark">SIRAOP</h1>
                 </div>
               </div>
               
@@ -71,8 +82,8 @@ export default function Navbar() {
                         onClick={() => router.push(item.href)}
                         className={`flex items-center px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                           isActive(item.href)
-                            ? 'bg-blue-100 text-blue-700 shadow-sm'
-                            : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
+                            ? 'bg-pm-accent text-pm-white shadow-sm'
+                            : 'text-secondary-600 hover:text-pm-dark hover:bg-pm-light'
                         }`}
                       >
                         <Icon className="h-4 w-4 mr-2" />

@@ -63,6 +63,28 @@ export class Ocorrencia {
   @Column({ type: 'simple-array', nullable: true })
   anexos_urls: string[]; // URLs dos arquivos anexos no GCS
 
+  // Campos específicos para Informação Relevante
+  @Column({ nullable: true })
+  fonte_informacao: string;
+
+  @Column({ nullable: true })
+  nome_fonte: string;
+
+  @Column({ nullable: true })
+  data_publicacao: Date;
+
+  @Column({ nullable: true })
+  link_materia: string;
+
+  @Column({ type: 'text', nullable: true })
+  resumo_informacao: string;
+
+  @Column({ nullable: true })
+  relevancia_seguranca: string;
+
+  @Column({ type: 'text', nullable: true })
+  observacoes_informacao: string;
+
   @CreateDateColumn()
   created_at: Date;
 

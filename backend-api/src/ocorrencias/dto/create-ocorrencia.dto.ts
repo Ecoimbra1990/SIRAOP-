@@ -60,4 +60,33 @@ export class CreateOcorrenciaDto {
   @IsArray()
   @IsOptional()
   anexos_urls?: string[];
+
+  // Campos específicos para Informação Relevante
+  @IsString()
+  @IsOptional()
+  fonte_informacao?: string;
+
+  @IsString()
+  @IsOptional()
+  nome_fonte?: string;
+
+  @IsDateString()
+  @IsOptional()
+  data_publicacao?: string;
+
+  @IsString()
+  @IsOptional()
+  link_materia?: string;
+
+  @IsString()
+  @IsOptional()
+  resumo_informacao?: string;
+
+  @IsString()
+  @IsOptional()
+  relevancia_seguranca?: string;
+
+  @IsString()
+  @IsOptional()
+  observacoes_informacao?: string;
 }

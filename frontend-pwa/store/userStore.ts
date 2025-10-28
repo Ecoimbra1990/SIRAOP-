@@ -83,8 +83,15 @@ export const useUserStore = create<AuthState>()(
             state.user = null;
             state.token = null;
           }
-          state.isLoading = false;
-          state.isHydrated = true;
+          // Manter loading até que o componente seja montado
+          state.isLoading = true;
+          state.isHydrated = false;
+          
+          console.log('Store rehidratado:', { 
+            hasUser: !!state.user, 
+            hasToken: !!state.token, 
+            isAuthenticated: state.isAuthenticated 
+          });
         }
       },
     }

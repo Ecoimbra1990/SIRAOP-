@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { ocorrenciasApi } from '@/lib/api';
+import { ocorrenciasApi, relatoriosApi } from '@/lib/api';
 import { 
   Plus, 
   Search, 
@@ -130,6 +130,23 @@ export default function OcorrenciasPage() {
         console.error('Erro ao excluir ocorrências:', error);
         alert('Erro ao excluir ocorrências');
       }
+    }
+  };
+
+  const handleGeneratePDF = async () => {
+    if (selectedOcorrencias.length === 0) {
+      alert('Selecione pelo menos uma ocorrência para gerar o PDF');
+      return;
+    }
+
+    try {
+      setIsGeneratingPDF(true);
+      await relatoriosApi.gerarInformativoPDF(selectedOcorrencias);
+    } catch (error) {
+      console.error('Erro ao gerar PDF:', error);
+      alert('Erro ao gerar PDF');
+    } finally {
+      setIsGeneratingPDF(false);
     }
   };
 
@@ -262,7 +279,7 @@ export default function OcorrenciasPage() {
 
         {/* Filters */}
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 mb-8">
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Buscar
@@ -317,6 +334,17 @@ export default function OcorrenciasPage() {
                 className="w-full bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-colors"
               >
                 {selectedOcorrencias.length === filteredOcorrencias.length ? 'Desmarcar Todas' : 'Selecionar Todas'}
+              </button>
+            </div>
+
+            <div className="flex items-end">
+              <button
+                onClick={handleGeneratePDF}
+                disabled={selectedOcorrencias.length === 0 || isGeneratingPDF}
+                className="w-full bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <Download className="h-4 w-4 inline mr-2" />
+                {isGeneratingPDF ? 'Gerando PDF...' : 'Gerar PDF'}
               </button>
             </div>
 

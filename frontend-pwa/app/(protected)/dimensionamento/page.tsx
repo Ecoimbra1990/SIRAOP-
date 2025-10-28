@@ -3,12 +3,12 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { dimensionamentoApi } from '@/lib/api';
+import { useApi } from '@/hooks/useApi';
+import LoadingSpinner from '@/components/LoadingSpinner';
 import { 
   MapPin, 
   Search, 
   Filter, 
-  Upload, 
-  Download, 
   Plus, 
   Edit, 
   Trash2, 
@@ -48,20 +48,28 @@ export default function DimensionamentoPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterRegiao, setFilterRegiao] = useState('');
   const [filterOpm, setFilterOpm] = useState('');
-  const [showImportModal, setShowImportModal] = useState(false);
-  const [importData, setImportData] = useState('');
-  const [importObservacoes, setImportObservacoes] = useState('');
-  const [isImporting, setIsImporting] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const [totalCount, setTotalCount] = useState(0);
   const [debugInfo, setDebugInfo] = useState<any>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [mounted, setMounted] = useState(false);
   
   const router = useRouter();
+  const { makeRequest, cancelRequest } = useApi();
 
   useEffect(() => {
-    // Não carregar dados automaticamente - apenas estatísticas básicas
+    console.log('🚀 DimensionamentoPage - Iniciando');
+    setMounted(true);
+    
+    // Carregar apenas estatísticas básicas na inicialização
     loadStats();
+    
+    // Cleanup: cancelar requisições quando o componente for desmontado
+    return () => {
+      console.log('🧹 DimensionamentoPage - Cleanup');
+      cancelRequest();
+    };
   }, []);
 
   useEffect(() => {
@@ -97,13 +105,13 @@ export default function DimensionamentoPage() {
         opm: filterOpm
       });
 
-      const data = await dimensionamentoApi.getAll({
+      const data = await makeRequest(() => dimensionamentoApi.getAll({
         page,
         limit: 50,
         search: searchTerm,
         regiao: filterRegiao,
         opm: filterOpm
-      });
+      }));
 
       console.log('✅ Dados recebidos da API:', data);
       console.log('✅ Tipo dos dados:', typeof data);
@@ -139,7 +147,13 @@ export default function DimensionamentoPage() {
         console.log('❌ Formato de resposta inválido:', data);
         throw new Error('Formato de resposta inválido');
       }
-    } catch (error) {
+    } catch (error: any) {
+      // Ignorar erros de requisições abortadas
+      if (error.name === 'AbortError' || error.code === 'ECONNABORTED' || error.message === 'Request aborted') {
+        console.log('Requisição de dimensionamentos cancelada - ignorando');
+        return; // Não fazer nada se foi cancelada
+      }
+      
       console.error('Erro ao carregar dimensionamentos:', error);
       console.error('Detalhes do erro:', {
         message: error instanceof Error ? error.message : 'Erro desconhecido',
@@ -192,101 +206,58 @@ export default function DimensionamentoPage() {
   const loadStats = async () => {
     try {
       console.log('📊 Carregando estatísticas...');
+      setError(null);
       
       // Usar endpoint específico de estatísticas (muito mais rápido)
-      const statsData = await dimensionamentoApi.getStats();
+      const statsData = await makeRequest(() => dimensionamentoApi.getStats());
       
       console.log('📊 Estatísticas recebidas:', statsData);
       setStats(statsData);
       console.log('✅ Estatísticas carregadas com sucesso');
       
-    } catch (error) {
+    } catch (error: any) {
+      // Ignorar erros de requisições abortadas
+      if (error.name === 'AbortError' || error.code === 'ECONNABORTED' || error.message === 'Request aborted') {
+        console.log('Requisição de estatísticas cancelada - ignorando');
+        return;
+      }
+      
       console.error('❌ Erro ao carregar estatísticas:', error);
-      // Banco vazio ou erro - mostrar zeros
+      console.error('❌ Detalhes do erro:', {
+        message: error.message,
+        status: error.response?.status,
+        data: error.response?.data,
+        stack: error.stack
+      });
+      
+      // Definir erro específico
+      if (error.response?.status === 401) {
+        setError('Erro de autenticação. Faça login novamente.');
+      } else if (error.response?.status === 500) {
+        setError('Erro interno do servidor. Tente novamente mais tarde.');
+      } else if (error.code === 'NETWORK_ERROR' || !navigator.onLine) {
+        setError('Erro de conexão. Verifique sua internet.');
+      } else {
+        setError(`Erro ao carregar dados: ${error.message}`);
+      }
+      
+      // Banco vazio ou erro - mostrar zeros sem bloquear a interface
       setStats({
         total: 0,
         porRegiao: {},
         porRisp: {},
         porAisp: {}
       });
-    }
-  };
-
-  const handleImport = async () => {
-    try {
-      if (!importData.trim()) {
-        alert('Por favor, cole o conteúdo do CSV antes de importar.');
-        return;
-      }
-
-      setIsImporting(true);
-      const result = await dimensionamentoApi.import({
-        csvContent: importData,
-        observacoes: importObservacoes
-      });
-
-      console.log('Importação realizada:', result);
-      alert(`Importação concluída! ${result.imported} registros importados.${result.errors.length > 0 ? ` ${result.errors.length} erros encontrados.` : ''}`);
-      
-      setShowImportModal(false);
-      setImportData('');
-      setImportObservacoes('');
-      
-      // Recarregar dados após importação
-      loadDimensionamentos();
-      loadStats();
-    } catch (error) {
-      console.error('Erro na importação:', error);
-      alert('Erro ao importar dados. Verifique o console para mais detalhes.');
     } finally {
-      setIsImporting(false);
+      // Garantir que o loading seja removido mesmo em caso de erro
+      setIsLoading(false);
     }
   };
 
-  const loadSampleData = async () => {
-    try {
-      setIsImporting(true);
-      
-      console.log('🔍 Iniciando importação automática...');
-      
-      // Carregar dados do arquivo CSV local
-      const response = await fetch('/dimensionamento.csv');
-      if (!response.ok) {
-        throw new Error(`Erro ao carregar CSV: ${response.status} ${response.statusText}`);
-      }
-      
-      const csvContent = await response.text();
-      console.log('✅ CSV carregado:', csvContent.length, 'caracteres');
-      console.log('📊 Primeiras linhas do CSV:', csvContent.split('\n').slice(0, 5));
-      
-      console.log('📤 Enviando para API...');
-      const result = await dimensionamentoApi.import({
-        csvContent,
-        observacoes: 'Importação automática dos dados de dimensionamento'
-      });
-
-      console.log('✅ Importação automática realizada:', result);
-      alert(`Importação automática concluída! ${result.imported} registros importados.${result.errors.length > 0 ? ` ${result.errors.length} erros encontrados.` : ''}`);
-      
-      // Recarregar dados após importação
-      console.log('🔄 Recarregando dados...');
-      loadDimensionamentos();
-      loadStats();
-    } catch (error) {
-      console.error('❌ Erro na importação automática:', error);
-      console.error('❌ Detalhes do erro:', {
-        message: error instanceof Error ? error.message : 'Erro desconhecido',
-        status: (error as any)?.response?.status,
-        data: (error as any)?.response?.data
-      });
-      alert(`Erro ao importar dados automaticamente: ${error instanceof Error ? error.message : 'Erro desconhecido'}. Verifique o console para mais detalhes.`);
-    } finally {
-      setIsImporting(false);
-    }
-  };
 
   const showDebugInfo = () => {
     const debug = {
+      mounted,
       dimensionamentos: dimensionamentos.length,
       stats: stats,
       totalCount,
@@ -297,8 +268,11 @@ export default function DimensionamentoPage() {
       searchTerm,
       filterRegiao,
       filterOpm,
+      error,
       apiUrl: process.env.NEXT_PUBLIC_API_URL || 'https://siraop-backend.fly.dev/api',
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
+      userAgent: typeof window !== 'undefined' ? navigator.userAgent : 'N/A',
+      url: typeof window !== 'undefined' ? window.location.href : 'N/A'
     };
     
     setDebugInfo(debug);
@@ -308,8 +282,37 @@ export default function DimensionamentoPage() {
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
+      <div className="min-h-screen flex items-center justify-center">
+        <LoadingSpinner size="lg" text="Carregando estatísticas" />
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center max-w-md mx-auto">
+          <div className="text-red-500 text-xl mb-4">❌ Erro</div>
+          <p className="text-gray-600 mb-4">{error}</p>
+          <div className="space-y-2">
+            <button
+              onClick={() => {
+                setError(null);
+                setIsLoading(true);
+                loadStats();
+              }}
+              className="btn-primary w-full"
+            >
+              Tentar Novamente
+            </button>
+            <button
+              onClick={() => router.push('/dimensionamento/teste-simples')}
+              className="btn-outline w-full"
+            >
+              Ir para Teste Simples
+            </button>
+          </div>
+        </div>
       </div>
     );
   }
@@ -329,44 +332,9 @@ export default function DimensionamentoPage() {
             </p>
           </div>
           <div className="flex items-center gap-4">
-            <button
-              onClick={loadSampleData}
-              disabled={isImporting}
-              className="btn-outline flex items-center gap-2"
-            >
-              {isImporting ? (
-                <>
-                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-gray-600"></div>
-                  Carregando...
-                </>
-              ) : (
-                <>
-                  <Upload className="h-4 w-4" />
-                  Carregar Dados
-                </>
-              )}
-            </button>
-            <button
-              onClick={() => setShowImportModal(true)}
-              className="btn-outline flex items-center gap-2"
-            >
-              <Upload className="h-4 w-4" />
-              Importar CSV
-            </button>
-            <button className="btn-outline flex items-center gap-2">
-              <Download className="h-4 w-4" />
-              Exportar
-            </button>
             <button className="btn-primary flex items-center gap-2">
               <Plus className="h-4 w-4" />
               Novo
-            </button>
-            <button
-              onClick={showDebugInfo}
-              className="btn-outline flex items-center gap-2"
-            >
-              <Search className="h-4 w-4" />
-              Debug
             </button>
           </div>
         </div>
@@ -658,67 +626,6 @@ export default function DimensionamentoPage() {
         </div>
       </div>
 
-      {/* Modal de Importação */}
-      {showImportModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-2xl max-h-[80vh] overflow-y-auto">
-            <h3 className="text-lg font-bold text-gray-900 mb-4">
-              Importar Dimensionamento CSV
-            </h3>
-            
-            <div className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Conteúdo do CSV
-                </label>
-                <textarea
-                  value={importData}
-                  onChange={(e) => setImportData(e.target.value)}
-                  rows={10}
-                  className="input"
-                  placeholder="Cole aqui o conteúdo do arquivo CSV..."
-                />
-              </div>
-              
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Observações (opcional)
-                </label>
-                <input
-                  type="text"
-                  value={importObservacoes}
-                  onChange={(e) => setImportObservacoes(e.target.value)}
-                  className="input"
-                  placeholder="Observações sobre a importação..."
-                />
-              </div>
-            </div>
-            
-            <div className="flex justify-end gap-4 mt-6">
-              <button
-                onClick={() => setShowImportModal(false)}
-                className="btn-outline"
-              >
-                Cancelar
-              </button>
-              <button
-                onClick={handleImport}
-                disabled={isImporting}
-                className="btn-primary flex items-center gap-2"
-              >
-                {isImporting ? (
-                  <>
-                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
-                    Importando...
-                  </>
-                ) : (
-                  'Importar'
-                )}
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

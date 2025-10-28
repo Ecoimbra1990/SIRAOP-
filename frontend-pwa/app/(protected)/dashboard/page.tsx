@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { ocorrenciasApi, relatoriosApi } from '@/lib/api';
 import { useUserStore } from '@/store/userStore';
+import { useApi } from '@/hooks/useApi';
 import { 
   Plus, 
   FileText, 
@@ -46,9 +47,15 @@ export default function DashboardPage() {
   
   const { user } = useUserStore();
   const router = useRouter();
+  const { makeRequest, cancelRequest } = useApi();
 
   useEffect(() => {
     loadOcorrencias();
+    
+    // Cleanup: cancelar requisições quando o componente for desmontado
+    return () => {
+      cancelRequest();
+    };
   }, []);
 
   useEffect(() => {
@@ -57,9 +64,14 @@ export default function DashboardPage() {
 
   const loadOcorrencias = async () => {
     try {
-      const data = await ocorrenciasApi.getAll();
+      const data = await makeRequest(ocorrenciasApi.getAll);
       setOcorrencias(data);
-    } catch (error) {
+    } catch (error: any) {
+      // Ignorar erros de requisições abortadas completamente
+      if (error.name === 'AbortError' || error.code === 'ECONNABORTED' || error.message === 'Request aborted') {
+        console.log('Requisição de ocorrências cancelada - ignorando');
+        return; // Não fazer nada se foi cancelada
+      }
       console.error('Erro ao carregar ocorrências:', error);
     } finally {
       setIsLoading(false);

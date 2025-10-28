@@ -3,9 +3,10 @@ import { useUserStore } from '@/store/userStore';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://siraop-backend.fly.dev/api';
 
-// Instância base do Axios
+// Instância base do Axios com configurações otimizadas
 export const api = axios.create({
   baseURL: API_BASE_URL,
+  timeout: 30000, // 30 segundos de timeout
   headers: {
     'Content-Type': 'application/json',
   },
@@ -31,16 +32,19 @@ api.interceptors.response.use(
     return response;
   },
   (error) => {
+    // Ignorar completamente erros de requisições abortadas
+    if (error.code === 'ECONNABORTED' || 
+        error.name === 'AxiosError' && error.message === 'Request aborted' ||
+        error.name === 'AbortError') {
+      // Não fazer nada - apenas rejeitar silenciosamente
+      return Promise.reject(error);
+    }
+    
     if (error.response?.status === 401) {
-      // Token expirado ou inválido - apenas se não estivermos já na página de login
-      if (window.location.pathname !== '/login') {
-        console.log('Token inválido, fazendo logout...');
-        useUserStore.getState().logout();
-        // Usar router.push em vez de window.location.href para evitar recarregamento
-        setTimeout(() => {
-          window.location.href = '/login';
-        }, 100);
-      }
+      // Token expirado ou inválido - apenas fazer logout sem redirecionamento automático
+      console.log('Token inválido detectado - fazendo logout silencioso');
+      useUserStore.getState().logout();
+      // NÃO fazer redirecionamento automático aqui - deixar o layout protegido lidar com isso
     }
     return Promise.reject(error);
   }

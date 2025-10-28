@@ -76,7 +76,7 @@ export class RelatoriosService {
       <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Relatório Informativo - SIRAOP</title>
+        <title>INFORMATIVO - INFORMAÇÕES RELEVANTES</title>
         <style>
           body {
             font-family: Arial, sans-serif;
@@ -86,19 +86,19 @@ export class RelatoriosService {
           }
           .header {
             text-align: center;
-            border-bottom: 2px solid #2563eb;
+            border-bottom: 2px solid #000;
             padding-bottom: 20px;
             margin-bottom: 30px;
           }
-          .logo {
-            font-size: 24px;
+          .org-line {
+            font-size: 14px;
             font-weight: bold;
-            color: #2563eb;
-            margin-bottom: 10px;
           }
-          .subtitle {
-            font-size: 16px;
-            color: #666;
+          .title {
+            margin-top: 16px;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: underline;
           }
           .info {
             background-color: #f8fafc;
@@ -114,7 +114,7 @@ export class RelatoriosService {
             background-color: #fff;
           }
           .ocorrencia-header {
-            background-color: #2563eb;
+            background-color: #1f2937;
             color: white;
             padding: 10px;
             margin: -20px -20px 15px -20px;
@@ -144,8 +144,10 @@ export class RelatoriosService {
       </head>
       <body>
         <div class="header">
-          <div class="logo">SIRAOP</div>
-          <div class="subtitle">Sistema de Registro e Análise de Ocorrências Policiais</div>
+          <div class="org-line">POLICIA MILITAR DO ESTADO DA BAHIA</div>
+          <div class="org-line">COMANDO DE OPERAÇÕES POLICIAIS MILITARES</div>
+          <div class="org-line">COORDENAÇÃO DE INTELIGÊNCIA</div>
+          <div class="title">INFORMATIVO - INFORMAÇÕES RELEVANTES</div>
         </div>
 
         <div class="info">
@@ -170,6 +172,20 @@ export class RelatoriosService {
               <span class="field-value">${ocorrencia.endereco}</span>
             </div>
 
+            ${ocorrencia.cidade || ocorrencia.estado ? `
+              <div class="field">
+                <span class="field-label">Cidade/UF:</span>
+                <span class="field-value">${[ocorrencia.cidade, ocorrencia.estado].filter(Boolean).join(' / ')}</span>
+              </div>
+            ` : ''}
+
+            ${ocorrencia.cep ? `
+              <div class="field">
+                <span class="field-label">CEP:</span>
+                <span class="field-value">${ocorrencia.cep}</span>
+              </div>
+            ` : ''}
+
             ${ocorrencia.bairro ? `
               <div class="field">
                 <span class="field-label">Bairro:</span>
@@ -191,6 +207,13 @@ export class RelatoriosService {
               </div>
             ` : ''}
 
+            ${ocorrencia.latitude && ocorrencia.longitude ? `
+              <div class="field">
+                <span class="field-label">Coordenadas:</span>
+                <span class="field-value">${ocorrencia.latitude}, ${ocorrencia.longitude}</span>
+              </div>
+            ` : ''}
+
             <div class="field">
               <span class="field-label">Descrição:</span>
               <span class="field-value">${ocorrencia.descricao}</span>
@@ -207,6 +230,57 @@ export class RelatoriosService {
               <span class="field-label">Status:</span>
               <span class="field-value">${ocorrencia.status}</span>
             </div>
+
+            ${ocorrencia.tipo === 'Informação Relevante' ? `
+              ${ocorrencia.fonte_informacao ? `
+                <div class="field">
+                  <span class="field-label">Fonte da Informação:</span>
+                  <span class="field-value">${ocorrencia.fonte_informacao}</span>
+                </div>
+              ` : ''}
+              
+              ${ocorrencia.nome_fonte ? `
+                <div class="field">
+                  <span class="field-label">Nome da Fonte:</span>
+                  <span class="field-value">${ocorrencia.nome_fonte}</span>
+                </div>
+              ` : ''}
+              
+              ${ocorrencia.data_publicacao ? `
+                <div class="field">
+                  <span class="field-label">Data da Publicação:</span>
+                  <span class="field-value">${new Date(ocorrencia.data_publicacao).toLocaleDateString('pt-BR')}</span>
+                </div>
+              ` : ''}
+              
+              ${ocorrencia.link_materia ? `
+                <div class="field">
+                  <span class="field-label">Link da Matéria:</span>
+                  <span class="field-value">${ocorrencia.link_materia}</span>
+                </div>
+              ` : ''}
+              
+              ${ocorrencia.resumo_informacao ? `
+                <div class="field">
+                  <span class="field-label">Resumo da Informação:</span>
+                  <span class="field-value">${ocorrencia.resumo_informacao}</span>
+                </div>
+              ` : ''}
+              
+              ${ocorrencia.relevancia_seguranca ? `
+                <div class="field">
+                  <span class="field-label">Relevância para Segurança Pública:</span>
+                  <span class="field-value">${ocorrencia.relevancia_seguranca}</span>
+                </div>
+              ` : ''}
+              
+              ${ocorrencia.observacoes_informacao ? `
+                <div class="field">
+                  <span class="field-label">Observações da Informação:</span>
+                  <span class="field-value">${ocorrencia.observacoes_informacao}</span>
+                </div>
+              ` : ''}
+            ` : ''}
           </div>
         `).join('')}
 
